@@ -7,10 +7,10 @@
     top: 0;
     width: 100%;
     background: rgba(3, 3, 5, 0.2);
-    backdrop-filter: blur(40px);
-    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     z-index: var(--z-fixed);
     padding: 0;
     transition: all var(--transition-slow);
@@ -34,8 +34,8 @@
 
 .glass-nav.scrolled {
     padding: 5px 0;
-    background: rgba(3, 3, 5, 0.25);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    background: rgba(3, 3, 5, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 .nav-container {

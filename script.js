@@ -28,24 +28,32 @@ document.addEventListener('DOMContentLoaded', () => {
     initLegalModal();
 });
 
-// --- Navbar Scroll Effect ---
+// --- Navbar Scroll Effect (Throttled) ---
 function initNavScroll() {
     const nav = document.querySelector('.glass-nav');
+    let scrollTimeout;
+    
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
-        }
-    });
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        }, 100);
+    }, { passive: true });
 }
 
-// --- Smooth Scroll & Active Link ---
+// --- Smooth Scroll & Active Link (Optimized) ---
 let isScrolling = false;
 
 function initSmoothScroll() {
     const navLinks = document.querySelectorAll('.nav-menu a');
     const sections = document.querySelectorAll('section[id]');
+    let scrollTimeout;
+    let lastScrollUpdate = 0;
+    const scrollThrottle = 150; // milliseconds
     
     // Smooth scroll on click
     navLinks.forEach(link => {
@@ -71,29 +79,39 @@ function initSmoothScroll() {
         });
     });
     
-    // Update active link on scroll (only when not programmatically scrolling)
-    let scrollTimeout;
+    // Update active link on scroll (throttled to prevent excessive updates)
     window.addEventListener('scroll', () => {
         if (isScrolling) return;
         
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 150;
-                if (window.scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        }, 100);
-    });
+        const now = Date.now();
+        if (now - lastScrollUpdate < scrollThrottle) {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                updateActiveLink(sections, navLinks);
+                lastScrollUpdate = Date.now();
+            }, scrollThrottle);
+        } else {
+            updateActiveLink(sections, navLinks);
+            lastScrollUpdate = now;
+        }
+    }, { passive: true });
+    
+    function updateActiveLink(sections, navLinks) {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 150;
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    }
 }
 
 // --- Functions ---
