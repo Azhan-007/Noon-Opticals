@@ -24,6 +24,9 @@ body {
     min-height: 100vh;
     color: var(--text);
     overflow-x: hidden;
+    /* MOBILE FIX: Ensure no horizontal overflow from layout shifts */
+    width: 100%;
+    max-width: 100%;
 }
 
 body.nav-open {
@@ -127,6 +130,8 @@ body.nav-open {
     margin: 0 auto;
     padding: 0 60px;
     width: 100%;
+    /* MOBILE FIX: Prevent overflow from layout shifts */
+    overflow-x: hidden;
 }
 
 .section-padding {
@@ -151,6 +156,22 @@ body.nav-open {
 
     .section-padding {
         padding: 50px 0;
+    }
+}
+
+/* MOBILE FIX: Prevent horizontal layout shifts on mobile devices */
+@media (max-width: 768px) {
+    html,
+    body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .container {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
     }
 }
 
@@ -2716,9 +2737,13 @@ body.nav-open {
 }
 
 @media (max-width: 768px) {
+    /* MOBILE FIX: Single column layout prevents horizontal card expansion */
     .product-grid {
-        grid-template-columns: repeat(2, 1fr);
+        /* Force single column on tablet/mobile - no reflow */
+        grid-template-columns: 1fr;
         gap: 15px;
+        /* Prevent any auto-fit recalculation */
+        width: 100%;
     }
 
     .shop-section {
@@ -2757,11 +2782,27 @@ body.nav-open {
         font-size: 0.8rem;
     }
 
-    .card-image-container {
-        height: 220px;
+    /* MOBILE FIX: Lock card dimensions to prevent expanding */
+    .luxury-product-card {
+        /* Lock card at 100% width with fixed min-height */
+        width: 100%;
+        min-height: 520px;
+        /* Remove all transitions on layout properties */
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .card-content {
+    /* MOBILE FIX: Lock image container with aspect-ratio */
+    .card-image-container {
+        /* Fixed height with aspect-ratio prevents image-based resize */
+        height: 220px;
+        aspect-ratio: 16 / 11;
+        width: 100%;
+        flex-shrink: 0;
+    }
+
+    /* MOBILE FIX: Lock card content padding */
         padding: 18px;
     }
 
@@ -2810,9 +2851,14 @@ body.nav-open {
         font-size: 0.7rem;
     }
     
-    /* Lock minimum height for tablet */
+    /* MOBILE FIX: Glass effect on inner layer only - outer controls layout */
     .luxury-product-card {
-        min-height: 550px;
+        /* Base card uses solid fallback on mobile - no blur needed */
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+        border: 1.5px solid rgba(148, 163, 184, 0.35);
+        /* Reduce or disable backdrop-filter on mobile for stability */
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
     }
 }
 
@@ -2832,10 +2878,11 @@ body.nav-open {
 }
 
 @media (max-width: 480px) {
+    /* MOBILE FIX: Reinforce single column layout on smaller phones */
     .product-grid {
-        /* Single column - full width, no reflow */
         grid-template-columns: 1fr;
         gap: 18px;
+        width: 100%;
     }
 
     .shop-section {
@@ -2866,6 +2913,21 @@ body.nav-open {
         flex-shrink: 0;
         padding: 8px 14px;
         font-size: 0.8rem;
+    }
+
+    /* MOBILE FIX: Lock card and image on small phones */
+    .luxury-product-card {
+        width: 100%;
+        min-height: 520px;
+        /* Animations only on safe properties */
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .card-image-container {
+        height: 220px;
+        aspect-ratio: 16 / 11;
+        width: 100%;
+        flex-shrink: 0;
     }
 
     /* Lock padding */
