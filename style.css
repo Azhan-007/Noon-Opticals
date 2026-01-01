@@ -220,6 +220,50 @@ body.nav-open {
     .contact-content {
         animation: none !important;
     }
+
+    /* ===========================================
+       MOBILE FIX: DISABLE BACKDROP-FILTER
+       Root cause of "big broken pixels" rendering
+       backdrop-filter causes GPU tile-based paint
+       which appears as chunked/pixelated loading
+       =========================================== */
+    .luxury-product-card,
+    .contact-card,
+    .glass-footer,
+    .glass-nav,
+    .feature-card-new,
+    .branch-card,
+    .filter-btn,
+    .floating-card,
+    .wishlist-btn,
+    .nav-menu,
+    .mobile-menu,
+    .cart-sidebar,
+    .login-modal,
+    .legal-modal-content,
+    .back-to-top,
+    [class*="glass"],
+    [class*="card"] {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    
+    /* Restore visual appearance without blur */
+    .luxury-product-card {
+        background: linear-gradient(135deg, rgba(20, 20, 30, 0.95), rgba(15, 15, 25, 0.9)) !important;
+    }
+    
+    .contact-card {
+        background: linear-gradient(135deg, rgba(20, 20, 30, 0.95), rgba(15, 15, 25, 0.9)) !important;
+    }
+    
+    .glass-footer {
+        background: rgba(10, 10, 18, 0.98) !important;
+    }
+    
+    .branch-card {
+        background: linear-gradient(135deg, rgba(20, 20, 30, 0.95), rgba(15, 15, 25, 0.9)) !important;
+    }
 }
 
 @media (max-width: 600px) {
