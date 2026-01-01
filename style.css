@@ -183,16 +183,6 @@ body.nav-open {
         max-width: 100%;
         box-sizing: border-box;
     }
-
-    /* TRANSITION SANITIZATION (MANDATORY)
-       Prevent mobile width/height/flex/grid/padding/margin transitions.
-       Allow only opacity + transform transitions on mobile.
-    */
-    *,
-    *::before,
-    *::after {
-        transition-property: opacity, transform !important;
-    }
     
     .container {
         overflow-x: hidden;
@@ -2048,7 +2038,8 @@ body.nav-open {
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    contain: layout style paint;
+    /* MOBILE FIX: paint-only containment prevents layout instability */
+    contain: paint;
 }
 
 .feature-card-new::before {
@@ -2347,15 +2338,11 @@ body.nav-open {
 }
 
 /* --- Product Grid --- */
-/* PERFORMANCE: Locked grid prevents horizontal chunked loading */
 .product-grid {
     display: grid;
-    /* Fixed minmax prevents auto-fit reflow - cards render at final size immediately */
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 28px;
     margin-top: 40px;
-    /* Contain layout to prevent repaints */
-    contain: layout;
 }
 
 /* --- Luxury Product Card --- */
@@ -2383,9 +2370,11 @@ body.nav-open {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
     /* Remove slideUp animation - causes layout shift */
     /* animation: slideUp 0.6s ease-out; */
-    /* Contain layout to prevent repaints */
-    contain: layout style paint;
+    /* MOBILE FIX: paint-only containment prevents layout instability */
+    contain: paint;
     will-change: transform;
+    /* GPU layer for stable rendering */
+    transform: translateZ(0);
 }
 
 @keyframes slideUp {
@@ -2821,13 +2810,20 @@ body.nav-open {
 }
 
 @media (max-width: 768px) {
-    /* MOBILE FIX: Single column layout prevents horizontal card expansion */
+    /* MOBILE FIX: Stable single-column grid - no auto-fit */
     .product-grid {
-        /* Force single column on tablet/mobile - no reflow */
+        display: grid;
         grid-template-columns: 1fr;
-        gap: 15px;
-        /* Prevent any auto-fit recalculation */
         width: 100%;
+        gap: 16px;
+    }
+
+    /* MOBILE FIX: Lock card size to prevent horizontal shifting */
+    .luxury-product-card {
+        width: 100%;
+        max-width: 100%;
+        min-height: 520px;
+        transform: translateZ(0);
     }
 
     .shop-section {
@@ -3034,11 +3030,9 @@ body.nav-open {
 }
 
 @media (max-width: 480px) {
-    /* MOBILE FIX: Reinforce single column layout on smaller phones */
+    /* MOBILE FIX: 480px inherits 768px grid - only adjust gap */
     .product-grid {
-        grid-template-columns: 1fr;
-        gap: 18px;
-        width: 100%;
+        gap: 14px;
     }
 
     .shop-section {
@@ -4912,11 +4906,7 @@ body.nav-open {
         gap: 20px;
     }
 
-    /* Products */
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
+    /* Products - uses main responsive rules */
 
     .product-card {
         width: 100%;
@@ -6018,31 +6008,4 @@ body.nav-open {
     }
 }
 
-/* Force 1 column on mobile */
-@media (max-width: 480px) {
-    .product-grid {
-        grid-template-columns: 1fr !important;
-    }
-}
-/* === MOBILE STABILITY FIX (FINAL) === */
-@media (max-width: 768px) {
-  html, body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
 
-  /* Freeze layout to stop horizontal chunking */
-  .card, .product-card, .shop-card {
-    overflow: hidden;
-    contain: layout paint size;
-    transform: translateZ(0);
-  }
-
-  /* Kill layout-affecting transitions */
-  * {
-    max-width: 100%;
-    box-sizing: border-box;
-    transition-property: opacity, transform !important;
-  }
-}
