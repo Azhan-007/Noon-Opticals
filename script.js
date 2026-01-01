@@ -120,7 +120,7 @@ function loadProducts() {
     grid.innerHTML = products.map(p => `
         <div class="luxury-product-card" data-category="${p.category.toLowerCase().replace(/\s+/g, '-')}">
             <div class="card-image-container">
-                <img src="${p.img}" alt="${p.name}" class="card-image">
+                <img src="${p.img}" alt="${p.name}" class="card-image" loading="lazy" decoding="async">
                 <button class="wishlist-btn" onclick="toggleWishlist(event, ${p.id})" title="Add to Wishlist">
                     <i class="fa-regular fa-heart"></i>
                 </button>
@@ -285,7 +285,7 @@ function updateCartDisplay() {
             total += item.price * item.qty;
             return `
                 <div class="c-item">
-                    <img src="${item.img}" alt="">
+                    <img src="${item.img}" alt="" loading="lazy" decoding="async">
                     <div class="c-info">
                         <h4>${item.name}</h4>
                         <p>₹${item.price.toLocaleString('en-IN')} x ${item.qty}</p>

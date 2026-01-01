@@ -162,6 +162,7 @@ body.nav-open {
 
 /* MOBILE FIX: Prevent horizontal layout shifts on mobile devices */
 @media (max-width: 768px) {
+    /* MOBILE VIEWPORT HARD-LOCK (MANDATORY) */
     html,
     body {
         overflow-x: hidden;
@@ -169,11 +170,44 @@ body.nav-open {
         max-width: 100%;
         position: relative;
     }
+
+    /* SCROLL & VIEWPORT STABILITY (MANDATORY) */
+    html {
+        scroll-behavior: auto;
+    }
+
+    /* GLOBAL MOBILE SAFETY LOCK (CRITICAL, MANDATORY) */
+    *,
+    *::before,
+    *::after {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* TRANSITION SANITIZATION (MANDATORY)
+       Prevent mobile width/height/flex/grid/padding/margin transitions.
+       Allow only opacity + transform transitions on mobile.
+    */
+    *,
+    *::before,
+    *::after {
+        transition-property: opacity, transform !important;
+    }
     
     .container {
         overflow-x: hidden;
         width: 100%;
         max-width: 100%;
+    }
+
+    /* Full-width section safety (MANDATORY) */
+    .hero,
+    .shop-section,
+    .glass-nav,
+    .glass-footer,
+    section {
+        max-width: 100%;
+        overflow-x: hidden;
     }
 
     /* Mobile section isolation: avoid transform/translate on layout containers during load */
@@ -2853,6 +2887,7 @@ body.nav-open {
     }
 
     /* MOBILE FIX: Lock card content padding */
+    .card-content {
         padding: 18px;
     }
 

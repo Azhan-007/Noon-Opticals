@@ -93,7 +93,7 @@ class CartManager {
             const total = this.getTotal();
             cartItems.innerHTML = this.cart.map(item => `
                 <div class="c-item">
-                    <img src="${item.img}" alt="${item.name}">
+                    <img src="${item.img}" alt="${item.name}" loading="lazy" decoding="async">
                     <div class="c-info">
                         <h4>${item.name}</h4>
                         <p>₹${item.price.toLocaleString('en-IN')} x ${item.qty}</p>
