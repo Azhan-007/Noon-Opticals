@@ -1,0 +1,246 @@
+/* =============================================
+   SKELETON LOADING UI
+   Pure CSS shimmer animations for better perceived performance
+   ============================================= */
+
+/* --- Skeleton Base Styles --- */
+.skeleton {
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0.08) 25%,
+            rgba(255, 255, 255, 0.15) 50%,
+            rgba(255, 255, 255, 0.08) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Hide skeleton when content is loaded */
+.skeleton-hidden {
+    display: none !important;
+}
+
+/* --- Hero Section Skeleton --- */
+.hero-skeleton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.hero-skeleton-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    height: 100%;
+    min-height: 100vh;
+}
+
+.hero-skeleton-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.skeleton-badge {
+    width: 180px;
+    height: 32px;
+    margin-bottom: 1rem;
+}
+
+.skeleton-title {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 0.5rem;
+}
+
+.skeleton-title-2 {
+    width: 90%;
+    height: 60px;
+    margin-bottom: 1rem;
+}
+
+.skeleton-description {
+    width: 95%;
+    height: 20px;
+    margin-bottom: 0.5rem;
+}
+
+.skeleton-description-2 {
+    width: 85%;
+    height: 20px;
+    margin-bottom: 2rem;
+}
+
+.hero-skeleton-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.skeleton-button {
+    width: 150px;
+    height: 50px;
+    border-radius: 25px;
+}
+
+.hero-skeleton-stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.skeleton-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.skeleton-stat-number {
+    width: 60px;
+    height: 40px;
+}
+
+.skeleton-stat-text {
+    width: 100%;
+    height: 16px;
+}
+
+.skeleton-stat-text-2 {
+    width: 80%;
+    height: 14px;
+}
+
+.hero-skeleton-image {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.skeleton-main-image {
+    width: 100%;
+    height: 500px;
+    border-radius: 16px;
+}
+
+.hero-skeleton-cards {
+    display: flex;
+    gap: 1rem;
+}
+
+.skeleton-floating-card {
+    width: 150px;
+    height: 60px;
+    border-radius: 30px;
+}
+
+/* --- Product Card Skeleton --- */
+.product-skeleton {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.skeleton-product-image {
+    width: 100%;
+    height: 250px;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+}
+
+.skeleton-product-title {
+    width: 80%;
+    height: 24px;
+    margin-bottom: 0.5rem;
+}
+
+.skeleton-product-category {
+    width: 50%;
+    height: 16px;
+    margin-bottom: 1rem;
+}
+
+.skeleton-product-price {
+    width: 40%;
+    height: 28px;
+    margin-bottom: 1rem;
+}
+
+.skeleton-product-button {
+    width: 100%;
+    height: 48px;
+    border-radius: 24px;
+}
+
+/* --- Responsive Skeleton Styles --- */
+@media (max-width: 968px) {
+    .hero-skeleton-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        min-height: auto;
+        padding-top: 100px;
+    }
+
+    .hero-skeleton-image {
+        order: 2;
+    }
+
+    .skeleton-main-image {
+        height: 350px;
+    }
+
+    .hero-skeleton-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .skeleton-title,
+    .skeleton-title-2 {
+        height: 40px;
+    }
+
+    .hero-skeleton-buttons {
+        flex-direction: column;
+    }
+
+    .skeleton-button {
+        width: 100%;
+    }
+
+    .skeleton-main-image {
+        height: 250px;
+    }
+
+    .hero-skeleton-cards {
+        flex-direction: column;
+    }
+
+    .skeleton-floating-card {
+        width: 100%;
+    }
+
+    .skeleton-product-image {
+        height: 200px;
+    }
+}
