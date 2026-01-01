@@ -2280,28 +2280,43 @@ body.nav-open {
 }
 
 /* --- Product Grid --- */
+/* PERFORMANCE: Locked grid prevents horizontal chunked loading */
 .product-grid {
     display: grid;
+    /* Fixed minmax prevents auto-fit reflow - cards render at final size immediately */
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 28px;
     margin-top: 40px;
+    /* Contain layout to prevent repaints */
+    contain: layout;
 }
 
 /* --- Luxury Product Card --- */
+/* PERFORMANCE: Fixed dimensions prevent "tukda tukda" horizontal expansion */
 .luxury-product-card {
     position: relative;
     border-radius: 18px;
     overflow: hidden;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
     border: 1.5px solid rgba(148, 163, 184, 0.35);
+    /* Glass effect isolated - does NOT affect layout size */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* CRITICAL: Only animate transform & opacity - NO width/height transitions */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
+    /* Lock height to prevent vertical reflow */
     height: 100%;
+    /* Lock minimum height to reserve space immediately */
+    min-height: 580px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    animation: slideUp 0.6s ease-out;
+    /* Remove slideUp animation - causes layout shift */
+    /* animation: slideUp 0.6s ease-out; */
+    /* Contain layout to prevent repaints */
     contain: layout style paint;
     will-change: transform;
 }
@@ -2329,18 +2344,29 @@ body.nav-open {
 }
 
 /* --- Card Image Container --- */
+/* PERFORMANCE: Fixed height + aspect-ratio prevents image-based layout shift */
 .card-image-container {
     position: relative;
     width: 100%;
+    /* Fixed height locks vertical space immediately */
     height: 220px;
     overflow: hidden;
     background: linear-gradient(135deg, rgba(148, 163, 184, 0.1), rgba(94, 109, 137, 0.1));
+    /* Aspect ratio ensures consistent sizing before image loads */
+    aspect-ratio: 16 / 11;
+    /* Flex-shrink prevents container from collapsing */
+    flex-shrink: 0;
 }
 
+/* PERFORMANCE: Locked image prevents resize-based layout shift */
 .card-image {
+    /* Lock dimensions to container - prevents expansion */
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* Display block prevents inline spacing issues */
+    display: block;
+    /* Only animate transform - NO width/height */
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
 }
@@ -2460,11 +2486,16 @@ body.nav-open {
 }
 
 /* --- Card Content --- */
+/* PERFORMANCE: Fixed padding prevents text reflow */
 .card-content {
+    /* Lock padding - no transitions */
     padding: 28px;
     display: flex;
     flex-direction: column;
+    /* flex-grow maintains bottom alignment without causing reflow */
     flex-grow: 1;
+    /* Prevent content from affecting card width */
+    min-width: 0;
 }
 
 .card-category {
@@ -2659,6 +2690,7 @@ body.nav-open {
 
 @media (max-width: 1024px) {
     .product-grid {
+        /* Fixed 2-column layout - no auto-fit */
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
     }
@@ -2667,12 +2699,19 @@ body.nav-open {
         font-size: 2.2rem;
     }
 
+    /* Lock content padding */
     .card-content {
         padding: 22px;
     }
 
+    /* Lock image height */
     .card-image-container {
         height: 260px;
+    }
+    
+    /* Adjust card min-height for tablet */
+    .luxury-product-card {
+        min-height: 600px;
     }
 }
 
@@ -2770,6 +2809,11 @@ body.nav-open {
         padding: 6px 12px;
         font-size: 0.7rem;
     }
+    
+    /* Lock minimum height for tablet */
+    .luxury-product-card {
+        min-height: 550px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -2789,6 +2833,7 @@ body.nav-open {
 
 @media (max-width: 480px) {
     .product-grid {
+        /* Single column - full width, no reflow */
         grid-template-columns: 1fr;
         gap: 18px;
     }
@@ -2823,10 +2868,12 @@ body.nav-open {
         font-size: 0.8rem;
     }
 
+    /* Lock padding */
     .card-content {
         padding: 16px;
     }
 
+    /* Lock image height */
     .card-image-container {
         height: 220px;
     }
@@ -2844,8 +2891,9 @@ body.nav-open {
         font-size: 0.85rem;
     }
 
+    /* CRITICAL: Lock minimum height on mobile */
     .luxury-product-card {
-        min-height: auto;
+        min-height: 520px;
     }
 }
 
