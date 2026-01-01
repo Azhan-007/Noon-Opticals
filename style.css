@@ -209,6 +209,17 @@ body.nav-open {
     .glass-footer {
         transform: none !important;
     }
+
+    /* MOBILE FIX: Disable layout-shifting animations on mobile */
+    .hero-badge,
+    .hero-title,
+    .hero-description,
+    .hero-buttons,
+    .hero-stats,
+    .scroll-indicator,
+    .contact-content {
+        animation: none !important;
+    }
 }
 
 @media (max-width: 600px) {
@@ -3181,7 +3192,7 @@ body.nav-open {
     max-width: 1200px;
     margin: 0 auto;
     align-items: start;
-    animation: slideUpFade 0.8s ease-out 0.1s both;
+    /* MOBILE FIX: Removed slideUpFade animation - causes layout shift on mobile */
 }
 
 /* --- Contact Cards --- */
