@@ -6024,3 +6024,25 @@ body.nav-open {
         grid-template-columns: 1fr !important;
     }
 }
+/* === MOBILE STABILITY FIX (FINAL) === */
+@media (max-width: 768px) {
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Freeze layout to stop horizontal chunking */
+  .card, .product-card, .shop-card {
+    overflow: hidden;
+    contain: layout paint size;
+    transform: translateZ(0);
+  }
+
+  /* Kill layout-affecting transitions */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+    transition-property: opacity, transform !important;
+  }
+}
