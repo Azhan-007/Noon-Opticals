@@ -167,12 +167,23 @@ body.nav-open {
         overflow-x: hidden;
         width: 100%;
         max-width: 100%;
+        position: relative;
     }
     
     .container {
         overflow-x: hidden;
         width: 100%;
         max-width: 100%;
+    }
+
+    /* Mobile section isolation: avoid transform/translate on layout containers during load */
+    .section-padding,
+    .shop-section,
+    .product-grid,
+    .hero,
+    .glass-nav,
+    .glass-footer {
+        transform: none !important;
     }
 }
 
