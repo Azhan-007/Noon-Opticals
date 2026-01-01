@@ -6020,15 +6020,11 @@ body.nav-open {
 }
 
 
-/* MOBILE FIX: Reserve space for JS-loaded products to prevent layout shift */
+/* MOBILE FIX: Stable grid container - no min-height reservation needed
+   Cards now render with correct initial visibility, so no space reservation required */
 @media (max-width: 768px) {
-    #productGrid:empty {
-        /* Reserve space before JS populates grid - prevents visible expansion */
-        min-height: 1600px;
-    }
-    
-    #productGrid.loaded {
-        /* Remove space reservation after products render */
-        min-height: 0;
+    #productGrid {
+        /* Contain layout to prevent external reflow */
+        contain: content;
     }
 }
