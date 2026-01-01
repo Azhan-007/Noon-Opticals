@@ -53,7 +53,7 @@ class ProductManager {
         return `
             <div class="luxury-product-card" data-category="${category.toLowerCase().replace(/\s+/g, '-')}">
                 <div class="card-image-container">
-                    <img src="${img}" alt="${name}" class="card-image" loading="lazy">
+                    <img src="${img}?q=80&w=400&auto=format&fit=crop" alt="${name}" class="card-image" loading="lazy" decoding="async">
                     <button class="wishlist-btn" onclick="toggleWishlist(event, ${id})" title="Add to Wishlist" aria-label="Add to wishlist">
                         <i class="fa-regular fa-heart"></i>
                     </button>
