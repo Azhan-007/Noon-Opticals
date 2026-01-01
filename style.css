@@ -6009,3 +6009,15 @@ body.nav-open {
 }
 
 
+/* MOBILE FIX: Reserve space for JS-loaded products to prevent layout shift */
+@media (max-width: 768px) {
+    #productGrid:empty {
+        /* Reserve space before JS populates grid - prevents visible expansion */
+        min-height: 1600px;
+    }
+    
+    #productGrid.loaded {
+        /* Remove space reservation after products render */
+        min-height: 0;
+    }
+}

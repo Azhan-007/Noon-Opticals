@@ -44,6 +44,8 @@ class ProductManager {
         if (!grid) return;
 
         grid.innerHTML = this.products.map(p => this.createProductCard(p)).join('');
+        // MOBILE FIX: Mark grid as loaded to release reserved space
+        grid.classList.add('loaded');
         this.applyFilter(this.currentFilter);
     }
 

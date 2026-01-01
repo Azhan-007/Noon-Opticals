@@ -168,6 +168,9 @@ function loadProducts() {
         </div>
     `).join('');
     
+    // MOBILE FIX: Mark grid as loaded to release reserved space
+    grid.classList.add('loaded');
+    
     applyFilterWithLimit('all');
     attachFilterListeners();
     initLoadMore();
