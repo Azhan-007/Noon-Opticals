@@ -28,6 +28,8 @@ body {
     /* MOBILE FIX: Ensure no horizontal overflow from layout shifts */
     width: 100%;
     max-width: 100%;
+    /* FIX: Dark background prevents white showing through on scroll */
+    background: #070710;
 }
 
 body.nav-open {
