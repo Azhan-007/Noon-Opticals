@@ -43,17 +43,38 @@ class ProductManager {
         const grid = document.getElementById('productGrid');
         if (!grid) return;
 
-        grid.innerHTML = this.products.map(p => this.createProductCard(p)).join('');
+        // MOBILE FIX: Render cards with initial visibility calculated
+        // This prevents layout shift from render-then-hide sequence
+        const visibleCount = this.initialVisibleCount;
+        let currentVisible = 0;
+        
+        grid.innerHTML = this.products.map(p => {
+            const category = p.category.toLowerCase().replace(/\s+/g, '-');
+            const matches = this.currentFilter === 'all' || category === this.currentFilter;
+            const shouldShow = matches && currentVisible < visibleCount;
+            
+            if (matches && currentVisible < visibleCount) {
+                currentVisible++;
+            }
+            
+            // Set initial display state directly in the card element
+            return this.createProductCard(p, shouldShow);
+        }).join('');
+        
         // MOBILE FIX: Mark grid as loaded to release reserved space
         grid.classList.add('loaded');
-        this.applyFilter(this.currentFilter);
+        this.updateLoadMoreButton(this.currentFilter);
     }
 
-    createProductCard(product) {
+    createProductCard(product, shouldShow = true) {
         const { id, name, category, price, oldPrice, img, discount, tags, inStock, rating, reviewCount } = product;
         
+        // MOBILE FIX: Set display state at render time to prevent reflow
+        const displayStyle = shouldShow ? 'display: block;' : 'display: none;';
+        const showClass = shouldShow ? ' show' : '';
+        
         return `
-            <div class="luxury-product-card" data-category="${category.toLowerCase().replace(/\s+/g, '-')}">
+            <div class="luxury-product-card${showClass}" data-category="${category.toLowerCase().replace(/\s+/g, '-')}" style="${displayStyle}">
                 <div class="card-image-container">
                     <img src="${img}?q=80&w=400&auto=format&fit=crop" 
                          alt="${name}" 
