@@ -264,6 +264,36 @@ body.nav-open {
     .branch-card {
         background: linear-gradient(135deg, rgba(20, 20, 30, 0.95), rgba(15, 15, 25, 0.9)) !important;
     }
+
+    /* ===========================================
+       MOBILE FIX: DISABLE GPU LAYER PROMOTION
+       will-change, translateZ, contain cause
+       chunked/tiled GPU rendering on Android
+       =========================================== */
+    * {
+        will-change: auto !important;
+        contain: none !important;
+    }
+    
+    .luxury-product-card,
+    .card-image,
+    .contact-card,
+    .branch-card,
+    .feature-card-new {
+        transform: none !important;
+        will-change: auto !important;
+        contain: none !important;
+    }
+    
+    /* Simplify box-shadows on mobile */
+    .luxury-product-card {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    .contact-card,
+    .branch-card {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+    }
 }
 
 @media (max-width: 600px) {
