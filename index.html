@@ -1,192 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOON | Modern Eyewear</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description"
+        content="NOON Opticals - Premium eyewear with modern design, UV protection, and blue-light filtering. Find your perfect frame today.">
+    <meta name="keywords" content="eyewear, glasses, sunglasses, blue light glasses, reading glasses, NOON Opticals">
+    <meta name="author" content="Azhan">
+    <meta name="theme-color" content="#0a0a12">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://noonopticals.com/">
+    <meta property="og:title" content="NOON Opticals - Modern Eyewear">
+    <meta property="og:description" content="Premium eyewear with style and optical clarity">
+    <meta property="og:image" content="assets/images/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="NOON Opticals - Modern Eyewear">
+    <meta property="twitter:description" content="Premium eyewear with style and optical clarity">
+
+    <!-- Mobile Web App -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="NOON Opticals">
+
+    <title>NOON Opticals | Premium Modern Eyewear</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css?v=33">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
 </head>
+
 <body>
 
     <div class="bg-gradient"></div>
 
     <nav class="glass-nav">
         <div class="nav-container">
-            <a href="#" class="logo">NOON OPTICALS<span class="dot">.</span></a>
-            
-            <ul class="nav-menu">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#shop">Shop</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <a href="#" class="logo">
+                <img src="assets/images/logo.png" alt="Noon Opticals Logo" class="logo-img">
+                <img src="assets/images/noon.png" alt="Noon" class="logo-text-img">
+                <span class="logo-opticals">OPTICALS</span>
+            </a>
 
-            <div class="nav-actions">
-                <div class="cart-btn" onclick="toggleCart()">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <span id="cartCount">0</span>
-                </div>
-                <div class="menu-toggle">
-                    <i class="fa-solid fa-bars"></i>
+            <div class="nav-right">
+                <ul class="nav-menu">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <button class="login-btn" id="loginBtn">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Login</span>
+                    </button>
+                    <div class="menu-toggle">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
 
     <section id="home" class="hero">
-        <div class="glass-card hero-card">
-            <div class="hero-text">
-                <span class="badge">New Collection 2025</span>
-                <h1>See Life in <br><span>High Definition</span></h1>
-                <p>Experience the perfect blend of style and optical clarity. Premium frames crafted for the modern visionary.</p>
-                <div class="btn-group">
-                    <a href="#shop" class="btn-primary">Shop Frames</a>
-                    <a href="#features" class="btn-secondary">Learn More</a>
+        <div class="hero-bg-elements">
+            <div class="hero-glow"></div>
+            <div class="floating-glasses">
+                <i class="fa-solid fa-glasses"></i>
+            </div>
+        </div>
+
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        <span class="badge-dot"></span>
+                        <span>New Collection 2026</span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="title-line">See Life in</span>
+                        <span class="title-highlight">High Definition</span>
+                    </h1>
+                    <p class="hero-description">Experience the perfect blend of style and optical clarity. Premium
+                        frames crafted for the modern visionary.</p>
+
+                    <div class="hero-cta">
+                        <a href="#shop" class="btn-primary">
+                            <span>Shop Frames</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#features" class="btn-secondary">
+                            <span>Learn More</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">3</span>
+                            <span class="stat-heading">Step Quality Check</span>
+                            <span class="stat-subtitle">Frame • Lens • Fit</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-number">100+</span>
+                            <span class="stat-heading">Frame Options</span>
+                            <span class="stat-subtitle">Modern & comfortable designs</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-number">0%</span>
+                            <span class="stat-heading">Hidden Charges</span>
+                            <span class="stat-subtitle">Honest optical pricing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-image">
+                    <div class="image-wrapper">
+                        <div class="image-frame"></div>
+                        <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=2080&auto=format&fit=crop"
+                            alt="Premium Glasses">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="floating-card card-1">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>1 Year Warranty</span>
+                    </div>
+                    <div class="floating-card card-2">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <span>Free Delivery</span>
+                    </div>
                 </div>
             </div>
-            <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=2080&auto=format&fit=crop" alt="Premium Glasses">
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-arrow">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p>Explore</p>
+        </div>
+    </section>
+
+    <!-- Promotional Banner -->
+    <section class="promo-banner">
+        <div class="container">
+            <div class="promo-content">
+                <div class="promo-text">
+                    <h3 class="promo-title">Lens Starting From <span class="promo-highlight">₹699</span></h3>
+                    <p class="promo-subtitle">And Get Free Frames with Every Purchase</p>
+                </div>
+                <a href="#shop" class="promo-cta">
+                    <span>Shop Now</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     </section>
 
     <section id="features" class="section-padding">
         <div class="container">
-            <div class="section-title">
-                <h2>Why Choose NOON OPTICALS?</h2>
-            </div>
-            <div class="feature-grid">
-                <div class="glass-card feature-box">
-                    <i class="fa-solid fa-tag"></i>
-                    <h3>Affordable Pricing</h3>
-                    <p>Quality eyewear at prices that won't break the bank.</p>
+            <div class="features-section">
+                <div class="features-header">
+                    <span class="features-eyebrow">Why Choose Us</span>
+                    <h2 class="features-title">NOON OPTICALS</h2>
+                    <p class="features-subtitle">Premium eyewear designed for comfort, clarity, and style — backed by
+                        transparent pricing and personal care.</p>
                 </div>
-                <div class="glass-card feature-box">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                    <h3>Anti-Glare Technology</h3>
-                    <p>Advanced blue-light filtering and anti-glare coating protection.</p>
-                </div>
-                <div class="glass-card feature-box">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    <h3>1-Year Warranty</h3>
-                    <p>Quality guarantee with hassle-free returns and exchanges.</p>
+
+                <div class="features-grid">
+                    <div class="feature-card-new">
+                        <div class="feature-card-inner">
+                            <div class="feature-icon-new">
+                                <i class="fa-solid fa-eye"></i>
+                            </div>
+                            <h3 class="feature-card-title">Premium Lenses</h3>
+                            <p class="feature-card-description">Blue-light filtering and UV protection for crystal-clear
+                                vision.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card-new">
+                        <div class="feature-card-inner">
+                            <div class="feature-icon-new">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <h3 class="feature-card-title">1-Year Warranty</h3>
+                            <p class="feature-card-description">Free repairs and replacements with 30-day returns.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card-new">
+                        <div class="feature-card-inner">
+                            <div class="feature-icon-new">
+                                <i class="fa-solid fa-tag"></i>
+                            </div>
+                            <h3 class="feature-card-title">Fair Pricing</h3>
+                            <p class="feature-card-description">Premium quality without the markup. No hidden fees.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card-new">
+                        <div class="feature-card-inner">
+                            <div class="feature-icon-new">
+                                <i class="fa-solid fa-truck-fast"></i>
+                            </div>
+                            <h3 class="feature-card-title">Fast Delivery</h3>
+                            <p class="feature-card-description">Free shipping with tracking in 3-5 business days.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="shop" class="section-padding">
+    <section id="shop" class="section-padding shop-section">
         <div class="container">
-            <div class="section-title">
-                <h2>Trending Now</h2>
-                <p>Our most popular frames this month.</p>
-            </div>
-            <div class="product-grid" id="productGrid">
+            <div class="shop-header">
+                <div class="shop-header-content">
+                    <span class="shop-eyebrow">Premium Collection</span>
+                    <h2 class="shop-title">Trending Now</h2>
+                    <p class="shop-subtitle">Curated eyewear for every lifestyle. Discover your perfect frame.</p>
                 </div>
+                <div class="shop-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="sun">Sun</button>
+                    <button class="filter-btn" data-filter="reading">Reading</button>
+                    <button class="filter-btn" data-filter="blue-light">Blue Light</button>
+                </div>
+            </div>
+            <div class="product-grid" id="productGrid"></div>
+            <div class="shop-actions">
+                <button class="load-more-btn" id="loadMoreBtn">
+                    <span>Show more styles</span>
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
         </div>
     </section>
 
-    <section id="contact" class="section-padding">
+    <!-- Branches Section -->
+    <section id="branches" class="section-padding branches-section">
         <div class="container">
-            <div class="section-title">
-                <h2>Get In Touch</h2>
-                <p>Have a question? We'd love to hear from you.</p>
+            <div class="contact-header">
+                <h2 class="contact-title">Our Branches</h2>
+                <p class="contact-subtitle">Find the Noon Opticals location that's most convenient for you.</p>
             </div>
-            
-            <div class="contact-container">
-                <div class="contact-info glass-card">
-                    <div class="info-item">
-                        <div class="icon-wrapper">
-                            <i class="fa-solid fa-location-dot"></i>
-                        </div>
-                        <div class="info-text">
-                            <h3>Visit Us</h3>
-                            <p>123 Vision Street, Suite 400<br>New York, NY 10001</p>
-                        </div>
+
+            <div class="branches-grid">
+                <div class="branch-card">
+                    <div class="branch-top">
+                        <span class="branch-badge">Main Branch</span>
+                        <h3 class="branch-name">HOSUR</h3>
+                        <p class="branch-address">HIG-47/2, Avalapalli Rd, Avalapalli Hudco, <br>Hosur, Tamil Nadu -
+                            635109</p>
                     </div>
-                    
-                    <div class="info-item">
-                        <div class="icon-wrapper">
-                            <i class="fa-solid fa-phone"></i>
+                    <div class="branch-meta">
+                        <div class="meta-item call-card" data-phone="+919655802510">
+                            <i class="fas fa-phone-alt"></i>
+                            <a href="tel:+919655802510">+91 96558 02510</a>
+
                         </div>
-                        <div class="info-text">
-                            <h3>Call Us</h3>
-                            <p>+1 (555) 123-4567<br>Mon-Fri, 9am-6pm EST</p>
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon - Sat: 9:00 AM - 10:00 PM | Sun: Closed</span>
                         </div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <div class="icon-wrapper">
-                            <i class="fa-solid fa-envelope"></i>
+                        <div class="meta-item">
+                            <i class="fas fa-location-arrow"></i>
+                            <a href="https://www.google.com/maps/search/?api=1&query=HIG-47%2F2%2C+Avalapalli+Rd%2C+Avalapalli+Hudco%2C+Hosur%2C+Tamil+Nadu+635109"
+                                target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
                         </div>
-                        <div class="info-text">
-                            <h3>Email Us</h3>
-                            <p>hello@noonopticals.com<br>support@noonopticals.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="social-links">
-                        <h3>Follow Us</h3>
-                        <div class="social-icons">
-                            <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
-                            <a href="#" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
-                            <a href="#" class="social-icon"><i class="fa-brands fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                    
-                    <div class="info-extra">
-                        <h3>Business Hours</h3>
-                        <p>Monday - Friday: 9:00 AM - 6:00 PM<br>
-                        Saturday: 10:00 AM - 4:00 PM<br>
-                        Sunday: Closed</p>
                     </div>
                 </div>
 
-                <div class="contact-form-wrapper glass-card">
+                <div class="branch-card">
+                    <div class="branch-top">
+                        <span class="branch-badge">Allied Branch</span>
+                        <h3 class="branch-name">PERNAMBUT</h3>
+                        <p class="branch-address">Near Lal Masjid, Aachari Street<br>Pernambut, Tamil Nadu - 635810</p>
+                    </div>
+                    <div class="branch-meta">
+                        <div class="meta-item call-card" data-phone="+917010531695">
+                            <i class="fas fa-phone-alt"></i>
+                            <a href="tel:+917010531695">+91 70105 31695</a>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon - Sun: 9:00 AM - 10:00 PM</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-location-arrow"></i>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Near+Lal+Masjid%2C+Aachari+Street%2C+Pernambut%2C+Tamil+Nadu+635810"
+                                target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding contact-section">
+        <div class="container">
+            <div class="contact-header">
+                <h2 class="contact-title">Get In Touch</h2>
+                <p class="contact-subtitle">We'd love to hear from you. Reach out with any questions or inquiries.</p>
+            </div>
+
+            <div class="contact-content">
+                <!-- Contact Information Card -->
+                <div class="contact-card info-card">
+                    <h3 class="card-heading">Contact Information</h3>
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="info-text">
+                                <h4>Location</h4>
+                                <p>HIG-47/2, Avalapalli Rd, Avalapalli Hudco, <br>Hosur, Tamil Nadu - 635109<br></p>
+                            </div>
+                        </div>
+
+                        <div class="info-item call-card" data-phone="+917010531695">
+                            <div class="info-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="info-text">
+                                <h4>Phone</h4>
+                                <p><a href="tel:+917010531695">+91 70105 31695</a><br><span class="time-info">Mon-Sat,
+                                        10am-9pm IST</span></p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="info-text">
+                                <h4>Email</h4>
+                                <p><a href="mailto:hello@noonopticals.com">hello@noonopticals.com</a></p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="info-text">
+                                <h4>Business Hours</h4>
+                                <p>Monday - Saturday<br><span class="time-info">9:00 AM - 10:00 PM IST</span><br><span
+                                        class="time-info">Sunday: Closed</span></p>
+                            </div>
+                        </div>
+
+                        <div class="social-section">
+                            <p class="social-label">Follow Us</p>
+                            <div class="social-icons">
+                                <a href="https://www.instagram.com/noon_opticals_pbt?igsh=Y2gwYW56eXF1aWpz"
+                                    class="social-icon" title="Instagram" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://wa.me/917010531695" class="social-icon" title="WhatsApp"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                                <a href="https://www.facebook.com/share/1DFskkeogd/" class="social-icon"
+                                    title="Facebook" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form Card -->
+                <div class="contact-card form-card">
+                    <h3 class="card-heading">Send us a Message</h3>
                     <form id="contactForm" class="contact-form">
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label for="firstName">First Name</label>
-                                <input type="text" id="firstName" name="firstName" required>
-                            </div>
-                            <div class="input-group">
-                                <label for="lastName">Last Name</label>
-                                <input type="text" id="lastName" name="lastName" required>
-                            </div>
+                        <div class="form-field">
+                            <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
                         </div>
-                        
-                        <div class="input-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
+
+                        <div class="form-field">
+                            <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
                         </div>
-                        
-                        <div class="input-group">
-                            <label for="phone">Phone Number (Optional)</label>
-                            <input type="tel" id="phone" name="phone">
+
+                        <div class="form-field">
+                            <input type="email" id="email" name="email" placeholder="Email Address" required>
                         </div>
-                        
-                        <div class="input-group">
-                            <label for="subject">Subject</label>
-                            <select id="subject" name="subject" required>
-                                <option value="" disabled selected>Select Subject</option>
-                                <option value="general">General Inquiry</option>
-                                <option value="product">Product Question</option>
-                                <option value="support">Customer Support</option>
-                                <option value="partnership">Partnership</option>
-                            </select>
+
+                        <div class="form-field">
+                            <input type="tel" id="phone" name="phone" placeholder="Phone Number (Optional)">
                         </div>
-                        
-                        <div class="input-group">
-                            <label for="message">Your Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
+
+                        <div class="form-field message-field">
+                            <textarea id="message" name="message" placeholder="Your Message" rows="5"
+                                required></textarea>
                         </div>
-                        
+
                         <button type="submit" class="submit-btn">
                             <span>Send Message</span>
-                            <i class="fa-solid fa-paper-plane"></i>
+                            <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </form>
                 </div>
@@ -197,59 +435,96 @@
     <footer class="glass-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col">
-                    <h3 class="footer-brand">NOON OPTICALS<span class="dot">.</span></h3>
-                    <p class="footer-desc">Your trusted destination for stylish, high-quality eyewear that combines fashion with functionality.</p>
+                <!-- Brand Column -->
+                <div class="footer-col footer-col-brand">
+                    <a href="#home" class="footer-brand">
+                        <img src="assets/images/logo.png" alt="Noon Opticals Logo" class="footer-logo-img">
+                        <img src="assets/images/noon.png" alt="Noon" class="footer-noon-img">
+                        <span class="footer-brand-text">OPTICALS</span>
+                    </a>
+                    <p class="footer-desc">
+                        Your trusted destination for stylish, high-quality eyewear that blends fashion with
+                        functionality — crafted for comfort, clarity, and everyday confidence.
+                    </p>
                     <div class="footer-socials">
-                        <a href="#" class="footer-social-icon"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="footer-social-icon"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#" class="footer-social-icon"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#" class="footer-social-icon"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://instagram.com" target="_blank" class="footer-social-icon"
+                            aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me" target="_blank" class="footer-social-icon" aria-label="WhatsApp">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" class="footer-social-icon" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
                     </div>
                 </div>
-                
+
+                <!-- Quick Links Column -->
                 <div class="footer-col">
-                    <h4>Quick Links</h4>
+                    <h4 class="footer-title">Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#shop">Shop</a></li>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#shop"><i class="fas fa-chevron-right"></i> Shop</a></li>
+                        <li><a href="#features"><i class="fas fa-chevron-right"></i> Features</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-col">
-                    <h4>Customer Service</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Track Order</a></li>
-                        <li><a href="#">Returns & Exchanges</a></li>
-                        <li><a href="#">Shipping Info</a></li>
-                        <li><a href="#">FAQ</a></li>
+
+                <!-- Contact Info Column -->
+                <div class="footer-col footer-col-contact">
+                    <h4 class="footer-title">Get in Touch</h4>
+                    <ul class="footer-contact-list">
+                        <li class="footer-contact-item call-card" data-phone="+919876543210">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <span class="contact-label">Call Us</span>
+                                <a href="tel:+919876543210">+91 98765 43210</a>
+                            </div>
+                        </li>
+                        <li class="footer-contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <span class="contact-label">Visit Us</span>
+                                <span class="contact-text">123 Vision Street, Eyewear District</span>
+                            </div>
+                        </li>
                     </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Newsletter</h4>
-                    <p class="newsletter-text">Subscribe for exclusive offers and updates</p>
-                    <div class="newsletter-form">
-                        <input type="email" placeholder="Your email">
-                        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
-                    </div>
                 </div>
             </div>
-            
+
+            <!-- Footer Bottom -->
             <div class="footer-bottom">
-                <p class="copyright">© 2025 NOON Opticals. All rights reserved.</p>
-                <div class="dev-badge">
-                    <span>Developed by Azhan</span>
-                </div>
-                <div class="footer-legal">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
+                <div class="footer-bottom-content">
+                    <div class="footer-left">
+                        <p class="copyright">
+                            © 2026 <strong>NOON Opticals</strong>. All Rights Reserved.
+                        </p>
+                    </div>
+                    <div class="footer-center">
+                        <span class="dev-credit">Developed by <strong>Azhan</strong></span>
+                    </div>
+                    <div class="footer-right">
+                        <div class="footer-legal">
+                            <a href="#" class="legal-link" data-legal="privacy">Privacy Policy</a>
+                            <span class="separator">|</span>
+                            <a href="#" class="legal-link" data-legal="terms">Terms of Service</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Floating Cart Button -->
+    <div class="floating-cart-btn" onclick="toggleCart()">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="floating-cart-badge" id="floatingCartCount">0</span>
+    </div>
 
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
@@ -257,7 +532,7 @@
             <span class="close-cart" onclick="toggleCart()">&times;</span>
         </div>
         <div class="cart-items" id="cartItems">
-            </div>
+        </div>
         <div class="cart-footer">
             <div class="total">Total: <span id="cartTotal">$0.00</span></div>
             <button class="checkout-btn">Checkout Now</button>
@@ -265,6 +540,172 @@
     </div>
     <div class="overlay" id="overlay" onclick="toggleCart()"></div>
 
-    <script src="script.js"></script>
+    <!-- Legal Modal -->
+    <div class="legal-modal" id="legalModal" aria-hidden="true" role="dialog">
+        <div class="legal-modal-overlay" data-close-legal></div>
+        <div class="legal-modal-content" role="document">
+            <button class="legal-close" aria-label="Close" data-close-legal>&times;</button>
+            <div class="legal-tabs">
+                <button class="legal-tab active" data-legal-tab="privacy">Privacy Policy</button>
+                <button class="legal-tab" data-legal-tab="terms">Terms of Service</button>
+            </div>
+
+            <div class="legal-body">
+                <div class="legal-pane active" data-legal-pane="privacy">
+                    <h3>Privacy Policy</h3>
+                    <p>At NOON OPTICALS, we respect your privacy and are committed to protecting your personal
+                        information.</p>
+                    <p>We may collect basic details such as your name, phone number, email address, or delivery address
+                        when you contact us, place an order, or fill out a form on our website.</p>
+                    <p>Your information is used only to:</p>
+                    <ul>
+                        <li>Process orders and inquiries</li>
+                        <li>Improve our products and services</li>
+                        <li>Communicate with you regarding your requests</li>
+                    </ul>
+                    <p>We do not sell, trade, or misuse your personal data.</p>
+                    <p>We take reasonable measures to keep your information safe. By using our website, you agree to
+                        this Privacy Policy.</p>
+                </div>
+
+                <div class="legal-pane" data-legal-pane="terms">
+                    <h3>Terms of Service</h3>
+                    <p>By accessing or using the NOON OPTICALS website, you agree to follow these terms.</p>
+                    <ul>
+                        <li>Product images are for display purposes and may slightly vary.</li>
+                        <li>Prices, availability, and offers are subject to change without prior notice.</li>
+                        <li>Orders are subject to confirmation.</li>
+                        <li>We are not responsible for delays caused by external factors.</li>
+                        <li>Content on this website is for general information purposes only.</li>
+                        <li>We reserve the right to update these terms at any time.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Login/Signup Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-modal-content">
+            <span class="auth-close" id="authClose">&times;</span>
+            <div class="auth-modal-inner">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Login</button>
+                    <button class="auth-tab" data-tab="signup">Sign Up</button>
+                </div>
+
+                <!-- Login Form -->
+                <div class="auth-form-container active" id="loginForm">
+                    <h2>Welcome Back</h2>
+                    <p class="auth-subtitle">Login to access your account</p>
+
+                    <form class="auth-form">
+                        <div class="auth-input-group">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+
+                        <div class="auth-input-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" placeholder="Password" required>
+                        </div>
+
+                        <div class="auth-options">
+                            <label class="remember-me">
+                                <input type="checkbox">
+                                <span>Remember me</span>
+                            </label>
+                            <a href="#" class="forgot-password">Forgot Password?</a>
+                        </div>
+
+                        <button type="submit" class="auth-submit-btn">
+                            <span>Login</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+
+                    <div class="auth-divider">
+                        <span>or continue with</span>
+                    </div>
+
+                    <div class="social-auth">
+                        <button class="social-btn google">
+                            <i class="fa-brands fa-google"></i>
+                        </button>
+                        <button class="social-btn facebook">
+                            <i class="fa-brands fa-facebook"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Signup Form -->
+                <div class="auth-form-container" id="signupForm">
+                    <h2>Create Account</h2>
+                    <p class="auth-subtitle">Sign up to get started</p>
+
+                    <form class="auth-form">
+                        <div class="auth-input-group">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" placeholder="Full Name" required>
+                        </div>
+
+                        <div class="auth-input-group">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+
+                        <div class="auth-input-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" placeholder="Password" required>
+                        </div>
+
+                        <label class="terms-checkbox">
+                            <input type="checkbox" required>
+                            <span>I agree to the <a href="#">Terms & Conditions</a></span>
+                        </label>
+
+                        <button type="submit" class="auth-submit-btn">
+                            <span>Sign Up</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+
+                    <div class="auth-divider">
+                        <span>or continue with</span>
+                    </div>
+
+                    <div class="social-auth">
+                        <button class="social-btn google">
+                            <i class="fa-brands fa-google"></i>
+                        </button>
+                        <button class="social-btn facebook">
+                            <i class="fa-brands fa-facebook"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JavaScript Files -->
+        <!-- Load data first -->
+        <script src="data/products.js"></script>
+
+        <!-- Load API configuration -->
+        <script src="api/config.js"></script>
+
+        <!-- Load modules -->
+        <script src="js/modules/cart.js"></script>
+        <script src="js/modules/products.js"></script>
+        <script src="js/modules/navigation.js"></script>
+        <script src="js/modules/auth.js"></script>
+        <script src="js/modules/ui.js"></script>
+
+        <!-- Load main application -->
+        <script src="js/app.js"></script>
+
+        <!-- Legacy support (can be removed once modular scripts are tested) -->
+        <!-- <script src="script.js"></script> -->
 </body>
+
 </html>
