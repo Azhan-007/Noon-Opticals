@@ -116,9 +116,10 @@ class CartManager {
         if (typeof lockBodyScroll === 'function') {
             lockBodyScroll();
         } else {
+            // Fallback: robust mobile scroll lock using scroll-locked class
             this.scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-            document.documentElement.classList.add('modal-open');
-            document.body.classList.add('modal-open');
+            document.documentElement.classList.add('scroll-locked');
+            document.body.classList.add('scroll-locked');
             document.body.style.top = `-${this.scrollPosition}px`;
             document.body.style.position = 'fixed';
             document.body.style.width = '100%';
@@ -136,8 +137,9 @@ class CartManager {
         if (typeof unlockBodyScroll === 'function') {
             unlockBodyScroll();
         } else {
-            document.documentElement.classList.remove('modal-open');
-            document.body.classList.remove('modal-open');
+            // Fallback: restore scroll
+            document.documentElement.classList.remove('scroll-locked');
+            document.body.classList.remove('scroll-locked');
             document.body.style.top = '';
             document.body.style.position = '';
             document.body.style.width = '';
