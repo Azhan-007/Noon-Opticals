@@ -4771,6 +4771,7 @@ body.nav-open {
     flex-direction: column;
     box-shadow: -5px 0 40px rgba(0, 0, 0, 0.4), inset 1px 0 0 rgba(255, 255, 255, 0.15);
     border-left: 1.5px solid rgba(148, 163, 184, 0.4);
+    overscroll-behavior: contain;
 }
 
 .cart-sidebar.open {
@@ -4809,6 +4810,8 @@ body.nav-open {
 .cart-items {
     flex: 1;
     overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
 }
 
 .c-item {
@@ -5218,6 +5221,7 @@ body.nav-open {
     z-index: 10000;
     animation: fadeIn 0.3s ease;
     overflow-y: auto;
+    overscroll-behavior: contain;
 }
 
 .auth-modal.active {
@@ -5245,6 +5249,8 @@ body.nav-open {
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: rgba(148, 163, 184, 0.4) rgba(255, 255, 255, 0.05);
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
 }
 
 .auth-modal-inner::-webkit-scrollbar {
