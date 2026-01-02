@@ -441,7 +441,7 @@ body.nav-open {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(3, 3, 5, 0.95);
+    background: rgba(10, 10, 18, 0.95);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(148, 163, 184, 0.2);
@@ -470,7 +470,7 @@ body.nav-open {
 
 .glass-nav.scrolled {
     padding: 5px 0;
-    background: rgba(3, 3, 5, 0.98);
+    background: rgba(13, 13, 24, 0.98);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
 }
 
