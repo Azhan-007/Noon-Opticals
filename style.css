@@ -1373,7 +1373,7 @@ body.nav-open {
     font-weight: 700;
     font-size: 0.95rem;
     letter-spacing: 0.5px;
-    box-shadow: 0 10px 40px rgba(148, 163, 184, 0.4);
+    box-shadow: none;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
@@ -1396,7 +1396,7 @@ body.nav-open {
 
 .btn-primary:hover {
     transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 20px 50px rgba(100, 116, 139, 0.5);
+    box-shadow: none;
 }
 
 .btn-primary i {
@@ -1563,7 +1563,7 @@ body.nav-open {
 .hero-image img {
     width: 100%;
     border-radius: 30px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    box-shadow: none;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1580,7 +1580,7 @@ body.nav-open {
 
 .hero-image:hover img {
     transform: scale(1.02) rotate(-0.5deg);
-    box-shadow: 0 30px 60px rgba(148, 163, 184, 0.25);
+    box-shadow: none;
 }
 
 /* Floating Cards */
@@ -1595,7 +1595,7 @@ body.nav-open {
     padding: 15px 20px;
     border-radius: 15px;
     border: 1px solid rgba(148, 163, 184, 0.2);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
     animation: floatCard 6s ease-in-out infinite;
 }
 
@@ -2125,7 +2125,7 @@ body.nav-open {
     overflow: hidden;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    box-shadow: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     /* MOBILE FIX: paint-only containment prevents layout instability */
     contain: paint;
@@ -2152,7 +2152,7 @@ body.nav-open {
     transform: translateY(-6px);
     border-color: rgba(148, 163, 184, 0.35);
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.05));
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25);
+    box-shadow: none;
 }
 
 .feature-card-inner {
@@ -2172,7 +2172,7 @@ body.nav-open {
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, rgba(203, 213, 225, 0.85), rgba(148, 163, 184, 0.65));
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    box-shadow: none;
     border: 1px solid rgba(148, 163, 184, 0.25);
     margin-bottom: 20px;
     transition: all 0.3s ease;
@@ -2180,7 +2180,7 @@ body.nav-open {
 
 .feature-card-new:hover .feature-icon-new {
     transform: none;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    box-shadow: none;
 }
 
 .feature-icon-new i {
@@ -2456,7 +2456,7 @@ body.nav-open {
     height: 100%;
     /* Lock minimum height to reserve space immediately */
     min-height: 580px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    box-shadow: none;
     /* Remove slideUp animation - causes layout shift */
     /* animation: slideUp 0.6s ease-out; */
     /* MOBILE FIX: paint-only containment prevents layout instability */
@@ -2482,10 +2482,7 @@ body.nav-open {
     transform: translateY(-6px);
     border-color: rgba(148, 163, 184, 0.6);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.1));
-    box-shadow:
-        0 16px 40px rgba(0, 0, 0, 0.25),
-        0 0 0 1px rgba(148, 163, 184, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    box-shadow: none;
 }
 
 /* --- Card Image Container --- */
@@ -3344,7 +3341,7 @@ body.nav-open {
     padding: 24px 24px 20px;
     backdrop-filter: blur(40px);
     -webkit-backdrop-filter: blur(40px);
-    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    box-shadow: none;
     transition: all 0.35s ease;
     position: relative;
     overflow: hidden;
@@ -3380,7 +3377,7 @@ body.nav-open {
 .branch-card:hover {
     border-color: rgba(148, 163, 184, 0.55);
     transform: translateY(-4px);
-    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: none;
 }
 
 .branch-top {
@@ -3399,7 +3396,7 @@ body.nav-open {
     letter-spacing: 0.04em;
     color: #0f172a;
     background: linear-gradient(135deg, #94A3B8, #CBD5E1);
-    box-shadow: 0 8px 20px rgba(148, 163, 184, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    box-shadow: none;
 }
 
 .branch-name {
