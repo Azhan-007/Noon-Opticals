@@ -2868,10 +2868,10 @@ body.nav-open {
     }
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1023px) {
     .product-grid {
         /* Fixed 2-column layout - no auto-fit */
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr) !important;
         gap: 20px;
     }
 
@@ -2895,7 +2895,7 @@ body.nav-open {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     /* MOBILE FIX: Stable single-column grid - no auto-fit */
     .product-grid {
         display: grid;
