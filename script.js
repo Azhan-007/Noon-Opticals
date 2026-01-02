@@ -1,28 +1,64 @@
 // --- Scroll Lock Helper (must be at top) ---
-function preventScroll(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    return false;
+let scrollLockPosition = 0;
+let isBodyLocked = false;
+
+// Touch event handler that allows scrolling inside modal but blocks outside
+function handleTouchMove(e) {
+    // Check if touch is inside a scrollable modal element
+    const cartItems = document.querySelector('.cart-items');
+    const authModalInner = document.querySelector('.auth-modal-inner');
+    const cartSidebar = document.querySelector('.cart-sidebar.open');
+    const authModal = document.querySelector('.auth-modal.active');
+    
+    let isInsideScrollable = false;
+    let target = e.target;
+    
+    while (target && target !== document.body) {
+        if (target === cartItems || target === authModalInner) {
+            isInsideScrollable = true;
+            break;
+        }
+        target = target.parentElement;
+    }
+    
+    // If not inside scrollable content, prevent scroll
+    if (!isInsideScrollable && (cartSidebar || authModal)) {
+        e.preventDefault();
+    }
 }
 
-// Store scroll position globally
-let scrollLockPosition = 0;
-
 function lockBodyScroll() {
+    if (isBodyLocked) return;
+    isBodyLocked = true;
+    
     scrollLockPosition = window.pageYOffset || document.documentElement.scrollTop;
-    document.documentElement.classList.add('modal-open');
-    document.body.classList.add('modal-open');
+    
+    // Add CSS classes
+    document.documentElement.classList.add('scroll-locked');
+    document.body.classList.add('scroll-locked');
+    
+    // iOS-specific scroll lock with inline styles
     document.body.style.top = `-${scrollLockPosition}px`;
-    document.addEventListener('touchmove', preventScroll, { passive: false });
-    document.addEventListener('wheel', preventScroll, { passive: false });
+    
+    // Add touch handler
+    document.addEventListener('touchmove', handleTouchMove, { passive: false });
 }
 
 function unlockBodyScroll() {
-    document.documentElement.classList.remove('modal-open');
-    document.body.classList.remove('modal-open');
+    if (!isBodyLocked) return;
+    isBodyLocked = false;
+    
+    // Remove touch handler
+    document.removeEventListener('touchmove', handleTouchMove, { passive: false });
+    
+    // Remove CSS classes
+    document.documentElement.classList.remove('scroll-locked');
+    document.body.classList.remove('scroll-locked');
+    
+    // Reset body top
     document.body.style.top = '';
-    document.removeEventListener('touchmove', preventScroll, { passive: false });
-    document.removeEventListener('wheel', preventScroll, { passive: false });
+    
+    // Restore scroll position
     window.scrollTo(0, scrollLockPosition);
 }
 

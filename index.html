@@ -118,6 +118,29 @@
                 overflow-x:hidden;
             }
         }
+        
+        /* iOS scroll lock - prevents body scroll when modal is open */
+        body.scroll-locked {
+            position: fixed !important;
+            overflow: hidden !important;
+            width: 100% !important;
+            height: 100% !important;
+        }
+        
+        html.scroll-locked {
+            overflow: hidden !important;
+        }
+        
+        /* Remove tap highlight globally */
+        * {
+            -webkit-tap-highlight-color: transparent !important;
+            -webkit-touch-callout: none;
+        }
+        
+        a, button, [onclick], input, select {
+            -webkit-tap-highlight-color: transparent !important;
+            outline: none !important;
+        }
     </style>
 
     <!-- Icons -->
