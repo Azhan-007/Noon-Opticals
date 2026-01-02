@@ -110,7 +110,10 @@ class CartManager {
         const overlay = document.getElementById('overlay');
         if (sidebar) sidebar.classList.add('open');
         if (overlay) overlay.classList.add('active');
+        document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
     }
 
     closeCart() {
@@ -118,7 +121,10 @@ class CartManager {
         const overlay = document.getElementById('overlay');
         if (sidebar) sidebar.classList.remove('open');
         if (overlay) overlay.classList.remove('active');
+        document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
     }
 
     toggleCart() {
