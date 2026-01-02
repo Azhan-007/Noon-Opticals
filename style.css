@@ -4761,7 +4761,7 @@ body.nav-open {
     right: 0;
     width: 350px;
     height: 100vh;
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.98), rgba(15, 23, 42, 0.98)) !important;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.75), rgba(15, 23, 42, 0.80)) !important;
     backdrop-filter: blur(45px) !important;
     -webkit-backdrop-filter: blur(45px) !important;
     z-index: 2000;
@@ -5033,7 +5033,7 @@ body.nav-open {
     /* Cart Sidebar */
     .cart-sidebar {
         width: 45%;
-        background: linear-gradient(135deg, rgba(30, 41, 59, 0.98), rgba(15, 23, 42, 0.98)) !important;
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.75), rgba(15, 23, 42, 0.80)) !important;
         backdrop-filter: blur(45px);
         -webkit-backdrop-filter: blur(45px);
     }
@@ -5060,7 +5060,7 @@ body.nav-open {
     .cart-sidebar {
         width: 100%;
         padding: 15px;
-        background: linear-gradient(135deg, rgba(30, 41, 59, 0.98), rgba(15, 23, 42, 0.98)) !important;
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.75), rgba(15, 23, 42, 0.80)) !important;
         backdrop-filter: blur(45px);
         -webkit-backdrop-filter: blur(45px);
     }
