@@ -441,9 +441,9 @@ body.nav-open {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(10, 10, 18, 0.75);
-    backdrop-filter: blur(25px) saturate(180%);
-    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    background: rgba(10, 10, 18, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(148, 163, 184, 0.2);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
@@ -470,9 +470,9 @@ body.nav-open {
 
 .glass-nav.scrolled {
     padding: 5px 0;
-    background: rgba(10, 10, 18, 0.85);
-    backdrop-filter: blur(30px) saturate(180%);
-    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    background: rgba(10, 10, 18, 0.99);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
 }
 
@@ -4763,9 +4763,9 @@ body.nav-open {
     right: 0;
     width: 350px;
     height: 100vh;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.08)) !important;
-    backdrop-filter: blur(40px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
+    background: linear-gradient(135deg, rgba(20, 25, 35, 0.95), rgba(15, 20, 30, 0.98)) !important;
+    backdrop-filter: blur(30px) !important;
+    -webkit-backdrop-filter: blur(30px) !important;
     z-index: 2000;
     padding: 20px;
     transform: translateX(100%);
@@ -5035,9 +5035,9 @@ body.nav-open {
     /* Cart Sidebar */
     .cart-sidebar {
         width: 45%;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.08)) !important;
-        backdrop-filter: blur(40px) saturate(180%);
-        -webkit-backdrop-filter: blur(40px) saturate(180%);
+        background: linear-gradient(135deg, rgba(20, 25, 35, 0.95), rgba(15, 20, 30, 0.98)) !important;
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
     }
 
     /* Footer */
@@ -5062,9 +5062,9 @@ body.nav-open {
     .cart-sidebar {
         width: 100%;
         padding: 15px;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.08)) !important;
-        backdrop-filter: blur(40px) saturate(180%);
-        -webkit-backdrop-filter: blur(40px) saturate(180%);
+        background: linear-gradient(135deg, rgba(20, 25, 35, 0.95), rgba(15, 20, 30, 0.98)) !important;
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
     }
 
     .cart-header {
