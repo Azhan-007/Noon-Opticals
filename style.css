@@ -5705,7 +5705,7 @@ body.nav-open {
     border-radius: 14px;
     border: 2px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 12px 36px rgba(148, 163, 184, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    box-shadow: none;
     position: relative;
     overflow: hidden;
 }
@@ -5727,7 +5727,7 @@ body.nav-open {
 
 .promo-cta:hover {
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 16px 40px rgba(148, 163, 184, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    box-shadow: none;
     background: linear-gradient(135deg, #99AABD 0%, #B8CADC 50%, #D9E2EC 100%);
 }
 
