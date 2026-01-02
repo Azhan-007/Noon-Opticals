@@ -5057,6 +5057,9 @@ body.nav-open {
     .cart-sidebar {
         width: 100%;
         padding: 15px;
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.98), rgba(15, 23, 42, 0.98)) !important;
+        backdrop-filter: blur(45px);
+        -webkit-backdrop-filter: blur(45px);
     }
 
     .cart-header {
