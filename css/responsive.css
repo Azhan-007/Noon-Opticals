@@ -104,7 +104,7 @@
     /* Cart Sidebar - Keep as sidebar like 1024px */
     .cart-sidebar {
         width: 320px !important;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.08)) !important;
+        background: linear-gradient(135deg, rgba(20, 25, 35, 0.95), rgba(15, 20, 30, 0.98)) !important;
         backdrop-filter: blur(30px) !important;
         -webkit-backdrop-filter: blur(30px) !important;
     }
@@ -508,7 +508,7 @@
 
     .cart-sidebar {
         width: 100% !important;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.08)) !important;
+        background: linear-gradient(135deg, rgba(20, 25, 35, 0.95), rgba(15, 20, 30, 0.98)) !important;
         backdrop-filter: blur(30px) !important;
         -webkit-backdrop-filter: blur(30px) !important;
     }
