@@ -1,3 +1,31 @@
+// --- Scroll Lock Helper (must be at top) ---
+function preventScroll(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+}
+
+// Store scroll position globally
+let scrollLockPosition = 0;
+
+function lockBodyScroll() {
+    scrollLockPosition = window.pageYOffset || document.documentElement.scrollTop;
+    document.documentElement.classList.add('modal-open');
+    document.body.classList.add('modal-open');
+    document.body.style.top = `-${scrollLockPosition}px`;
+    document.addEventListener('touchmove', preventScroll, { passive: false });
+    document.addEventListener('wheel', preventScroll, { passive: false });
+}
+
+function unlockBodyScroll() {
+    document.documentElement.classList.remove('modal-open');
+    document.body.classList.remove('modal-open');
+    document.body.style.top = '';
+    document.removeEventListener('touchmove', preventScroll, { passive: false });
+    document.removeEventListener('wheel', preventScroll, { passive: false });
+    window.scrollTo(0, scrollLockPosition);
+}
+
 // --- Data ---
 const products = [
     { id: 1, name: "Neon Vision", category: "Sport", price: 3499, oldPrice: 4299, img: "https://images.unsplash.com/photo-1577803645773-f96470509666?q=80&w=2070&auto=format&fit=crop", discount: 18, tags: ["UV400", "Polarized"], inStock: true },
@@ -302,40 +330,21 @@ function updateCartDisplay() {
 }
 
 // --- UI Toggles ---
-let cartScrollPosition = 0;
-
 function toggleCart(forceOpen = false) {
     const sidebar = document.getElementById('cartSidebar');
     const overlay = document.getElementById('overlay');
+    
     if(forceOpen) {
-        cartScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
         sidebar.classList.add('open');
         overlay.classList.add('active');
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.overflow = 'hidden';
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${cartScrollPosition}px`;
-        document.body.style.width = '100%';
-        document.body.addEventListener('touchmove', preventScroll, { passive: false });
+        lockBodyScroll();
     } else {
         const isOpen = sidebar.classList.toggle('open');
         overlay.classList.toggle('active');
         if (isOpen) {
-            cartScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-            document.documentElement.style.overflow = 'hidden';
-            document.body.style.overflow = 'hidden';
-            document.body.style.position = 'fixed';
-            document.body.style.top = `-${cartScrollPosition}px`;
-            document.body.style.width = '100%';
-            document.body.addEventListener('touchmove', preventScroll, { passive: false });
+            lockBodyScroll();
         } else {
-            document.body.removeEventListener('touchmove', preventScroll, { passive: false });
-            document.documentElement.style.overflow = '';
-            document.body.style.overflow = '';
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.width = '';
-            window.scrollTo(0, cartScrollPosition);
+            unlockBodyScroll();
         }
     }
 }
@@ -461,9 +470,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // --- Auth Modal Functions ---
-let authScrollPosition = 0;
-const preventScroll = (e) => e.preventDefault();
-
 const authModal = document.getElementById('authModal');
 const loginBtn = document.getElementById('loginBtn');
 const authClose = document.getElementById('authClose');
@@ -474,19 +480,7 @@ const authForms = document.querySelectorAll('.auth-form-container');
 if (loginBtn) {
     loginBtn.addEventListener('click', () => {
         authModal.classList.add('active');
-        
-        // Save scroll position
-        authScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Lock scroll
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.overflow = 'hidden';
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${authScrollPosition}px`;
-        document.body.style.width = '100%';
-        
-        // Prevent touch scrolling
-        document.body.addEventListener('touchmove', preventScroll, { passive: false });
+        lockBodyScroll();
     });
 }
 
@@ -494,19 +488,7 @@ if (loginBtn) {
 if (authClose) {
     authClose.addEventListener('click', () => {
         authModal.classList.remove('active');
-        
-        // Remove touch prevention
-        document.body.removeEventListener('touchmove', preventScroll, { passive: false });
-        
-        // Unlock scroll
-        document.documentElement.style.overflow = '';
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        
-        // Restore scroll position
-        window.scrollTo(0, authScrollPosition);
+        unlockBodyScroll();
     });
 }
 
@@ -514,19 +496,7 @@ if (authClose) {
 authModal?.addEventListener('click', (e) => {
     if (e.target === authModal) {
         authModal.classList.remove('active');
-        
-        // Remove touch prevention
-        document.body.removeEventListener('touchmove', preventScroll, { passive: false });
-        
-        // Unlock scroll
-        document.documentElement.style.overflow = '';
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        
-        // Restore scroll position
-        window.scrollTo(0, authScrollPosition);
+        unlockBodyScroll();
     }
 });
 
