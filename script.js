@@ -302,29 +302,40 @@ function updateCartDisplay() {
 }
 
 // --- UI Toggles ---
+let cartScrollPosition = 0;
+
 function toggleCart(forceOpen = false) {
     const sidebar = document.getElementById('cartSidebar');
     const overlay = document.getElementById('overlay');
     if(forceOpen) {
+        cartScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
         sidebar.classList.add('open');
         overlay.classList.add('active');
         document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';
         document.body.style.position = 'fixed';
+        document.body.style.top = `-${cartScrollPosition}px`;
         document.body.style.width = '100%';
+        document.body.addEventListener('touchmove', preventScroll, { passive: false });
     } else {
         const isOpen = sidebar.classList.toggle('open');
         overlay.classList.toggle('active');
         if (isOpen) {
+            cartScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
             document.documentElement.style.overflow = 'hidden';
             document.body.style.overflow = 'hidden';
             document.body.style.position = 'fixed';
+            document.body.style.top = `-${cartScrollPosition}px`;
             document.body.style.width = '100%';
+            document.body.addEventListener('touchmove', preventScroll, { passive: false });
         } else {
+            document.body.removeEventListener('touchmove', preventScroll, { passive: false });
             document.documentElement.style.overflow = '';
             document.body.style.overflow = '';
             document.body.style.position = '';
+            document.body.style.top = '';
             document.body.style.width = '';
+            window.scrollTo(0, cartScrollPosition);
         }
     }
 }
@@ -450,6 +461,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // --- Auth Modal Functions ---
+let authScrollPosition = 0;
+const preventScroll = (e) => e.preventDefault();
+
 const authModal = document.getElementById('authModal');
 const loginBtn = document.getElementById('loginBtn');
 const authClose = document.getElementById('authClose');
@@ -460,10 +474,19 @@ const authForms = document.querySelectorAll('.auth-form-container');
 if (loginBtn) {
     loginBtn.addEventListener('click', () => {
         authModal.classList.add('active');
+        
+        // Save scroll position
+        authScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Lock scroll
         document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';
         document.body.style.position = 'fixed';
+        document.body.style.top = `-${authScrollPosition}px`;
         document.body.style.width = '100%';
+        
+        // Prevent touch scrolling
+        document.body.addEventListener('touchmove', preventScroll, { passive: false });
     });
 }
 
@@ -471,10 +494,19 @@ if (loginBtn) {
 if (authClose) {
     authClose.addEventListener('click', () => {
         authModal.classList.remove('active');
+        
+        // Remove touch prevention
+        document.body.removeEventListener('touchmove', preventScroll, { passive: false });
+        
+        // Unlock scroll
         document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
         document.body.style.position = '';
+        document.body.style.top = '';
         document.body.style.width = '';
+        
+        // Restore scroll position
+        window.scrollTo(0, authScrollPosition);
     });
 }
 
@@ -482,10 +514,19 @@ if (authClose) {
 authModal?.addEventListener('click', (e) => {
     if (e.target === authModal) {
         authModal.classList.remove('active');
+        
+        // Remove touch prevention
+        document.body.removeEventListener('touchmove', preventScroll, { passive: false });
+        
+        // Unlock scroll
         document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
         document.body.style.position = '';
+        document.body.style.top = '';
         document.body.style.width = '';
+        
+        // Restore scroll position
+        window.scrollTo(0, authScrollPosition);
     }
 });
 

@@ -9,6 +9,7 @@ class CartManager {
     constructor() {
         this.cart = this.loadCart();
         this.cartKey = 'noonOpticals_cart';
+        this.scrollPosition = 0;
     }
 
     loadCart() {
@@ -110,10 +111,19 @@ class CartManager {
         const overlay = document.getElementById('overlay');
         if (sidebar) sidebar.classList.add('open');
         if (overlay) overlay.classList.add('active');
+        
+        // Save scroll position
+        this.scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Lock scroll
         document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';
         document.body.style.position = 'fixed';
+        document.body.style.top = `-${this.scrollPosition}px`;
         document.body.style.width = '100%';
+        
+        // Prevent touch scrolling
+        document.body.addEventListener('touchmove', this.preventScroll, { passive: false });
     }
 
     closeCart() {
@@ -121,10 +131,23 @@ class CartManager {
         const overlay = document.getElementById('overlay');
         if (sidebar) sidebar.classList.remove('open');
         if (overlay) overlay.classList.remove('active');
+        
+        // Remove touch prevention
+        document.body.removeEventListener('touchmove', this.preventScroll, { passive: false });
+        
+        // Unlock scroll
         document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
         document.body.style.position = '';
+        document.body.style.top = '';
         document.body.style.width = '';
+        
+        // Restore scroll position
+        window.scrollTo(0, this.scrollPosition);
+    }
+
+    preventScroll(e) {
+        e.preventDefault();
     }
 
     toggleCart() {
