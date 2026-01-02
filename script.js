@@ -2,27 +2,114 @@
 let scrollLockPosition = 0;
 let isBodyLocked = false;
 
+// Store initial touch position for scroll direction detection
+let touchStartY = 0;
+
+// Touch start handler to capture initial position
+function handleTouchStart(e) {
+    touchStartY = e.touches[0].clientY;
+}
+
 // Touch event handler that allows scrolling inside modal but blocks outside
 function handleTouchMove(e) {
-    // Check if touch is inside a scrollable modal element
     const cartItems = document.querySelector('.cart-items');
     const authModalInner = document.querySelector('.auth-modal-inner');
     const cartSidebar = document.querySelector('.cart-sidebar.open');
     const authModal = document.querySelector('.auth-modal.active');
-    
-    let isInsideScrollable = false;
+
+    // If no modal is open, allow normal scrolling
+    if (!cartSidebar && !authModal) {
+        return;
+    }
+
     let target = e.target;
-    
+    let scrollableElement = null;
+
+    // Find if we're inside a scrollable element
     while (target && target !== document.body) {
-        if (target === cartItems || target === authModalInner) {
-            isInsideScrollable = true;
+        if (target === cartItems || target === authModalInner ||
+            target.classList.contains('cart-items') ||
+            target.classList.contains('auth-modal-inner')) {
+            scrollableElement = target;
+            break;
+        }
+        // Also check for cart-sidebar or auth-modal-content as containers
+        if (target.classList.contains('cart-sidebar') ||
+            target.classList.contains('auth-modal-content')) {
+            scrollableElement = target.querySelector('.cart-items, .auth-modal-inner');
             break;
         }
         target = target.parentElement;
     }
-    
-    // If not inside scrollable content, prevent scroll
-    if (!isInsideScrollable && (cartSidebar || authModal)) {
+
+    if (scrollableElement) {
+        const touchY = e.touches[0].clientY;
+        const touchDelta = touchStartY - touchY;
+        const scrollTop = scrollableElement.scrollTop;
+        const scrollHeight = scrollableElement.scrollHeight;
+        const clientHeight = scrollableElement.clientHeight;
+
+        // Check if at top and trying to scroll up, or at bottom and trying to scroll down
+        const isAtTop = scrollTop <= 0 && touchDelta < 0;
+        const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1 && touchDelta > 0;
+
+        // Prevent overscroll at boundaries
+        if (isAtTop || isAtBottom) {
+            e.preventDefault();
+        }
+        // Allow normal scrolling within the element
+    } else {
+        // Not inside scrollable content, block all scrolling
+        e.preventDefault();
+    }
+}
+
+// Fallback touch event blocker for document-level scroll prevention
+function preventDefaultTouch(e) {
+    const cartSidebar = document.querySelector('.cart-sidebar.open');
+    const authModal = document.querySelector('.auth-modal.active');
+
+    // Only block if a modal is open
+    if (!cartSidebar && !authModal) {
+        return;
+    }
+
+    // Check if the touch is inside a scrollable element
+    let target = e.target;
+    while (target && target !== document.documentElement) {
+        if (target.classList.contains('cart-items') ||
+            target.classList.contains('auth-modal-inner')) {
+            return; // Allow scrolling inside modal content
+        }
+        target = target.parentElement;
+    }
+
+    // Block scrolling outside modal content
+    e.preventDefault();
+}
+
+// Wheel event handler for desktop
+function handleWheel(e) {
+    const cartSidebar = document.querySelector('.cart-sidebar.open');
+    const authModal = document.querySelector('.auth-modal.active');
+
+    if (!cartSidebar && !authModal) {
+        return;
+    }
+
+    let target = e.target;
+    let scrollableElement = null;
+
+    while (target && target !== document.body) {
+        if (target.classList.contains('cart-items') ||
+            target.classList.contains('auth-modal-inner')) {
+            scrollableElement = target;
+            break;
+        }
+        target = target.parentElement;
+    }
+
+    if (!scrollableElement) {
         e.preventDefault();
     }
 }
@@ -30,34 +117,52 @@ function handleTouchMove(e) {
 function lockBodyScroll() {
     if (isBodyLocked) return;
     isBodyLocked = true;
-    
+
     scrollLockPosition = window.pageYOffset || document.documentElement.scrollTop;
-    
+
     // Add CSS classes
     document.documentElement.classList.add('scroll-locked');
     document.body.classList.add('scroll-locked');
-    
+
     // iOS-specific scroll lock with inline styles
     document.body.style.top = `-${scrollLockPosition}px`;
-    
-    // Add touch handler
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+
+    // Add touch handlers for mobile
+    document.addEventListener('touchstart', handleTouchStart, { passive: true });
     document.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+    // Add wheel handler for desktop
+    document.addEventListener('wheel', handleWheel, { passive: false });
+
+    // Additional mobile safeguard - prevent all scrolling on html element
+    document.documentElement.addEventListener('touchmove', preventDefaultTouch, { passive: false });
 }
 
 function unlockBodyScroll() {
     if (!isBodyLocked) return;
     isBodyLocked = false;
-    
-    // Remove touch handler
-    document.removeEventListener('touchmove', handleTouchMove, { passive: false });
-    
+
+    // Remove touch handlers - must match capture option used in addEventListener
+    document.removeEventListener('touchstart', handleTouchStart);
+    document.removeEventListener('touchmove', handleTouchMove);
+    document.documentElement.removeEventListener('touchmove', preventDefaultTouch);
+
+    // Remove wheel handler
+    document.removeEventListener('wheel', handleWheel, { passive: false });
+
     // Remove CSS classes
     document.documentElement.classList.remove('scroll-locked');
     document.body.classList.remove('scroll-locked');
-    
-    // Reset body top
+
+    // Reset inline styles
     document.body.style.top = '';
-    
+    document.body.style.position = '';
+    document.body.style.width = '';
+    document.body.style.overflow = '';
+
     // Restore scroll position
     window.scrollTo(0, scrollLockPosition);
 }
@@ -96,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function initNavScroll() {
     const nav = document.querySelector('.glass-nav');
     let scrollTimeout;
-    
+
     window.addEventListener('scroll', () => {
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
@@ -118,23 +223,23 @@ function initSmoothScroll() {
     let scrollTimeout;
     let lastScrollUpdate = 0;
     const scrollThrottle = 150; // milliseconds
-    
+
     // Smooth scroll on click
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             isScrolling = true;
-            
+
             const targetId = link.getAttribute('href');
             const targetSection = document.querySelector(targetId);
-            
+
             // Update active state immediately
             navLinks.forEach(l => l.classList.remove('active'));
             link.classList.add('active');
-            
+
             if (targetSection) {
                 targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                
+
                 // Re-enable scroll detection after animation completes
                 setTimeout(() => {
                     isScrolling = false;
@@ -142,11 +247,11 @@ function initSmoothScroll() {
             }
         });
     });
-    
+
     // Update active link on scroll (throttled to prevent excessive updates)
     window.addEventListener('scroll', () => {
         if (isScrolling) return;
-        
+
         const now = Date.now();
         if (now - lastScrollUpdate < scrollThrottle) {
             clearTimeout(scrollTimeout);
@@ -159,7 +264,7 @@ function initSmoothScroll() {
             lastScrollUpdate = now;
         }
     }, { passive: true });
-    
+
     function updateActiveLink(sections, navLinks) {
         let current = '';
         sections.forEach(section => {
@@ -168,7 +273,7 @@ function initSmoothScroll() {
                 current = section.getAttribute('id');
             }
         });
-        
+
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === '#' + current) {
@@ -231,10 +336,10 @@ function loadProducts() {
             </div>
         </div>
     `).join('');
-    
+
     // MOBILE FIX: Mark grid as loaded to release reserved space
     grid.classList.add('loaded');
-    
+
     applyFilterWithLimit('all');
     attachFilterListeners();
     initLoadMore();
@@ -279,7 +384,7 @@ function applyFilterWithLimit(filter) {
 function initLoadMore() {
     const loadMoreBtn = document.getElementById('loadMoreBtn');
     if (!loadMoreBtn) return;
-    
+
     loadMoreBtn.addEventListener('click', () => {
         productsUnlocked = true;
         const currentFilter = document.querySelector('.filter-btn.active')?.getAttribute('data-filter') || 'all';
@@ -319,10 +424,10 @@ function toggleWishlist(event, id) {
 function addToCart(id) {
     const product = products.find(p => p.id === id);
     const item = cart.find(i => i.id === id);
-    if(item) {
+    if (item) {
         item.qty++;
     } else {
-        cart.push({...product, qty: 1});
+        cart.push({ ...product, qty: 1 });
     }
     saveCart();
     toggleCart(true);
@@ -342,8 +447,8 @@ function updateCartDisplay() {
     const totalItems = cart.reduce((a, b) => a + b.qty, 0);
     document.getElementById('floatingCartCount').innerText = totalItems;
     const cartItems = document.getElementById('cartItems');
-    
-    if(cart.length === 0) {
+
+    if (cart.length === 0) {
         cartItems.innerHTML = "<p style='text-align:center; padding:20px; color:#666;'>Your cart is empty.</p>";
         document.getElementById('cartTotal').innerText = "₹0";
     } else {
@@ -369,8 +474,8 @@ function updateCartDisplay() {
 function toggleCart(forceOpen = false) {
     const sidebar = document.getElementById('cartSidebar');
     const overlay = document.getElementById('overlay');
-    
-    if(forceOpen) {
+
+    if (forceOpen) {
         sidebar.classList.add('open');
         overlay.classList.add('active');
         lockBodyScroll();
@@ -464,9 +569,9 @@ function initCallCards() {
 document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             // Get form data
             const formData = {
                 firstName: document.getElementById('firstName').value,
@@ -475,28 +580,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 phone: document.getElementById('phone').value,
                 message: document.getElementById('message').value
             };
-            
+
             // Simulate form submission
             const submitBtn = this.querySelector('.premium-submit-btn');
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
-            
+
             setTimeout(() => {
                 // Show success message
                 submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Message Sent!';
                 submitBtn.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
-                
+
                 // Log form data (in production, send to server)
                 console.log('Form submitted:', formData);
-                
+
                 // Reset form after 2 seconds
                 setTimeout(() => {
                     contactForm.reset();
                     submitBtn.innerHTML = originalText;
                     submitBtn.style.background = '';
                     submitBtn.disabled = false;
-                    
+
                     // Optional: Show a notification
                     alert('Thank you for reaching out! We\'ll get back to you soon.');
                 }, 2000);
@@ -540,11 +645,11 @@ authModal?.addEventListener('click', (e) => {
 authTabs.forEach(tab => {
     tab.addEventListener('click', () => {
         const targetTab = tab.getAttribute('data-tab');
-        
+
         // Update active tab
         authTabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
-        
+
         // Show corresponding form
         authForms.forEach(form => {
             form.classList.remove('active');
@@ -560,7 +665,7 @@ document.querySelectorAll('.auth-form').forEach(form => {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         const isLogin = form.closest('#loginForm');
-        
+
         if (isLogin) {
             console.log('Login submitted');
             alert('Login functionality will be implemented with backend integration.');

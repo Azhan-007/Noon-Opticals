@@ -12,6 +12,7 @@ class AuthManager {
         this.closeBtn = document.getElementById('authClose');
         this.tabs = document.querySelectorAll('.auth-tab');
         this.forms = document.querySelectorAll('.auth-form-container');
+        this.scrollPosition = 0;
     }
 
     init() {
@@ -55,14 +56,40 @@ class AuthManager {
     openModal() {
         if (this.modal) {
             this.modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+
+            // Use global lock function if available
+            if (typeof lockBodyScroll === 'function') {
+                lockBodyScroll();
+            } else {
+                // Fallback: robust mobile scroll lock
+                this.scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+                document.documentElement.classList.add('modal-open');
+                document.body.classList.add('modal-open');
+                document.body.style.top = `-${this.scrollPosition}px`;
+                document.body.style.position = 'fixed';
+                document.body.style.width = '100%';
+                document.body.style.overflow = 'hidden';
+            }
         }
     }
 
     closeModal() {
         if (this.modal) {
             this.modal.classList.remove('active');
-            document.body.style.overflow = '';
+
+            // Use global unlock function if available
+            if (typeof unlockBodyScroll === 'function') {
+                unlockBodyScroll();
+            } else {
+                // Fallback: restore scroll
+                document.documentElement.classList.remove('modal-open');
+                document.body.classList.remove('modal-open');
+                document.body.style.top = '';
+                document.body.style.position = '';
+                document.body.style.width = '';
+                document.body.style.overflow = '';
+                window.scrollTo(0, this.scrollPosition);
+            }
         }
     }
 

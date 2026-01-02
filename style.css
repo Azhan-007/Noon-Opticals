@@ -25,7 +25,25 @@
 }
 
 /* Remove tap highlight from all interactive elements */
-a, button, input, select, textarea, [onclick], .btn-primary, .btn-secondary, .nav-menu a, .login-btn, .menu-toggle, .close-cart, .checkout-btn, .filter-btn, .product-card, .luxury-product-card, .add-cart-btn, .auth-tab, .legal-tab {
+a,
+button,
+input,
+select,
+textarea,
+[onclick],
+.btn-primary,
+.btn-secondary,
+.nav-menu a,
+.login-btn,
+.menu-toggle,
+.close-cart,
+.checkout-btn,
+.filter-btn,
+.product-card,
+.luxury-product-card,
+.add-cart-btn,
+.auth-tab,
+.legal-tab {
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     outline: none;
@@ -56,6 +74,26 @@ body.modal-open {
 
 html.modal-open {
     overflow: hidden !important;
+}
+
+/* Scroll lock for mobile modals - prevents background scroll */
+html.scroll-locked,
+body.scroll-locked {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+    height: 100% !important;
+    touch-action: none !important;
+    overscroll-behavior: none !important;
+    -webkit-overflow-scrolling: auto !important;
+}
+
+/* Ensure scrollable areas inside modals still work */
+.scroll-locked .cart-items,
+.scroll-locked .auth-modal-inner {
+    touch-action: pan-y !important;
+    overscroll-behavior: contain !important;
+    -webkit-overflow-scrolling: touch !important;
 }
 
 /* --- Premium Luxury Background --- */
@@ -138,12 +176,12 @@ html.modal-open {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
-    
+
     .bg-gradient::before,
     .bg-gradient::after {
         animation: none !important;
     }
-    
+
     .cart-btn {
         animation: none !important;
     }
@@ -186,6 +224,7 @@ html.modal-open {
 
 /* MOBILE FIX: Prevent horizontal layout shifts on mobile devices */
 @media (max-width: 768px) {
+
     /* MOBILE VIEWPORT HARD-LOCK (MANDATORY) */
     html,
     body {
@@ -207,7 +246,7 @@ html.modal-open {
         max-width: 100%;
         box-sizing: border-box;
     }
-    
+
     .container {
         overflow-x: hidden;
         width: 100%;
@@ -271,20 +310,20 @@ html.modal-open {
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
     }
-    
+
     /* Restore visual appearance without blur */
     .luxury-product-card {
         background: linear-gradient(135deg, rgba(20, 20, 30, 0.95), rgba(15, 15, 25, 0.9)) !important;
     }
-    
+
     .contact-card {
         background: linear-gradient(135deg, rgba(20, 20, 30, 0.95), rgba(15, 15, 25, 0.9)) !important;
     }
-    
+
     .glass-footer {
         background: rgba(10, 10, 18, 0.98) !important;
     }
-    
+
     .branch-card {
         background: linear-gradient(135deg, rgba(20, 20, 30, 0.95), rgba(15, 15, 25, 0.9)) !important;
     }
@@ -298,7 +337,7 @@ html.modal-open {
         will-change: auto !important;
         contain: none !important;
     }
-    
+
     .luxury-product-card,
     .card-image,
     .contact-card,
@@ -308,12 +347,12 @@ html.modal-open {
         will-change: auto !important;
         contain: none !important;
     }
-    
+
     /* Simplify box-shadows on mobile */
     .luxury-product-card {
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
     }
-    
+
     .contact-card,
     .branch-card {
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
@@ -2468,10 +2507,10 @@ html.modal-open {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     /* CRITICAL: Only animate transform & opacity - NO width/height transitions */
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     /* Lock height to prevent vertical reflow */
@@ -2910,7 +2949,7 @@ html.modal-open {
     .card-image-container {
         height: 260px;
     }
-    
+
     /* Adjust card min-height for tablet */
     .luxury-product-card {
         min-height: 600px;
@@ -2918,6 +2957,7 @@ html.modal-open {
 }
 
 @media (max-width: 767px) {
+
     /* MOBILE FIX: Stable single-column grid - no auto-fit */
     .product-grid {
         display: grid;
@@ -2977,8 +3017,8 @@ html.modal-open {
         min-height: 520px;
         /* Remove all transitions on layout properties */
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+            border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     /* MOBILE FIX: Lock image container with aspect-ratio */
@@ -3039,7 +3079,7 @@ html.modal-open {
         padding: 6px 12px;
         font-size: 0.7rem;
     }
-    
+
     /* MOBILE FIX: Glass effect on inner layer only - outer controls layout */
     .luxury-product-card {
         /* Base card uses solid fallback on mobile - no blur needed */
@@ -3053,6 +3093,7 @@ html.modal-open {
 
 /* MOBILE FIX: Prevent text reflow from font loading on mobile */
 @media (max-width: 768px) {
+
     /* Lock all text containers to prevent font-swap reflow */
     .card-content {
         width: 100%;
@@ -3138,6 +3179,7 @@ html.modal-open {
 }
 
 @media (max-width: 480px) {
+
     /* MOBILE FIX: 480px inherits 768px grid - only adjust gap */
     .product-grid {
         gap: 14px;

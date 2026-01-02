@@ -33,13 +33,13 @@ class CartManager {
 
     addItem(product) {
         const existingItem = this.cart.find(item => item.id === product.id);
-        
+
         if (existingItem) {
             existingItem.qty++;
         } else {
             this.cart.push({ ...product, qty: 1 });
         }
-        
+
         this.saveCart();
         this.openCart();
     }
@@ -111,7 +111,7 @@ class CartManager {
         const overlay = document.getElementById('overlay');
         if (sidebar) sidebar.classList.add('open');
         if (overlay) overlay.classList.add('active');
-        
+
         // Use global lock function if available
         if (typeof lockBodyScroll === 'function') {
             lockBodyScroll();
@@ -120,6 +120,9 @@ class CartManager {
             document.documentElement.classList.add('modal-open');
             document.body.classList.add('modal-open');
             document.body.style.top = `-${this.scrollPosition}px`;
+            document.body.style.position = 'fixed';
+            document.body.style.width = '100%';
+            document.body.style.overflow = 'hidden';
         }
     }
 
@@ -128,7 +131,7 @@ class CartManager {
         const overlay = document.getElementById('overlay');
         if (sidebar) sidebar.classList.remove('open');
         if (overlay) overlay.classList.remove('active');
-        
+
         // Use global unlock function if available
         if (typeof unlockBodyScroll === 'function') {
             unlockBodyScroll();
@@ -136,6 +139,9 @@ class CartManager {
             document.documentElement.classList.remove('modal-open');
             document.body.classList.remove('modal-open');
             document.body.style.top = '';
+            document.body.style.position = '';
+            document.body.style.width = '';
+            document.body.style.overflow = '';
             window.scrollTo(0, this.scrollPosition);
         }
     }
