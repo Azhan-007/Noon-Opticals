@@ -308,9 +308,11 @@ function toggleCart(forceOpen = false) {
     if(forceOpen) {
         sidebar.classList.add('open');
         overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
     } else {
-        sidebar.classList.toggle('open');
+        const isOpen = sidebar.classList.toggle('open');
         overlay.classList.toggle('active');
+        document.body.style.overflow = isOpen ? 'hidden' : '';
     }
 }
 
