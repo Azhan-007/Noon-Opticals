@@ -104,9 +104,9 @@
     /* Cart Sidebar - Keep as sidebar like 1024px */
     .cart-sidebar {
         width: 320px !important;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.10)) !important;
-        backdrop-filter: blur(45px) !important;
-        -webkit-backdrop-filter: blur(45px) !important;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.08)) !important;
+        backdrop-filter: blur(30px) !important;
+        -webkit-backdrop-filter: blur(30px) !important;
     }
 
     .cart-header h2,
@@ -508,9 +508,9 @@
 
     .cart-sidebar {
         width: 100% !important;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.10)) !important;
-        backdrop-filter: blur(45px) !important;
-        -webkit-backdrop-filter: blur(45px) !important;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.08)) !important;
+        backdrop-filter: blur(30px) !important;
+        -webkit-backdrop-filter: blur(30px) !important;
     }
 
     /* Floating Elements Mobile */
