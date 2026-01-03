@@ -55,7 +55,12 @@
         padding: 15px 30px;
     }
 
-    /* Hero Section Tablet */
+    /* Hero Section Tablet - extra padding for fixed navbar + search bar */
+    .hero {
+        padding-top: 160px !important;
+        /* navbar (72px) + search bar (~50px) + margin */
+    }
+
     .hero-content {
         gap: 50px !important;
     }
@@ -185,9 +190,10 @@
         padding: 50px 0;
     }
 
-    /* Hero Section Mobile */
+    /* Hero Section Mobile - extra padding for fixed navbar + search bar */
     .hero {
-        padding-top: 100px !important;
+        padding-top: 160px !important;
+        /* navbar (72px) + search bar (~50px) + margin */
         padding-bottom: 50px !important;
         min-height: auto !important;
     }

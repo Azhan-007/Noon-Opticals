@@ -82,15 +82,7 @@
             background: linear-gradient(165deg, #070710 0%, #0a0a12 15%, #0d0d18 30%, #0f0f1a 45%, #0d0d18 60%, #0a0a12 75%, #070710 100%);
         }
 
-        .glass-nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 18, 0.98) !important;
-            backdrop-filter: blur(20px) !important;
-            -webkit-backdrop-filter: blur(20px) !important;
-            z-index: 1000;
-        }
+
 
         .cart-sidebar {
             background: linear-gradient(135deg, rgba(20, 25, 35, 0.95), rgba(15, 20, 30, 0.98)) !important;
@@ -112,6 +104,14 @@
             body,
             .hero {
                 min-height: 100vh;
+            }
+        }
+
+        /* Mobile/Tablet: search bar scrolls with content, not fixed */
+        @media (max-width: 1024px) {
+            .hero {
+                padding-top: 20px;
+                /* reduced since search bar flows naturally, not fixed */
             }
         }
 
@@ -174,11 +174,24 @@
                 <span class="logo-opticals">OPTICALS</span>
             </a>
 
+            <div class="search-container">
+                <div class="search-bar">
+                    <i class="fa-solid fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Search eyewear..." id="searchInput">
+                    <button class="search-clear-btn" type="button" title="Clear">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <button class="voice-search-btn" id="voiceSearchBtn" type="button" title="Voice Search">
+                        <i class="fa-solid fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
             <div class="nav-right">
                 <ul class="nav-menu">
                     <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#shop">Shop</a></li>
                     <li><a href="#features">Features</a></li>
+                    <li><a href="#shop">Shop</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
 
@@ -192,10 +205,23 @@
                     </div>
                 </div>
             </div>
-        </div>
     </nav>
 
     <section id="home" class="hero">
+        <!-- Mobile/Tablet Search Bar (INSIDE hero for gradient bg) -->
+        <div class="mobile-search-container">
+            <div class="search-bar">
+                <i class="fa-solid fa-search search-icon"></i>
+                <input type="text" class="search-input mobile-search-input" placeholder="Search eyewear...">
+                <button class="search-clear-btn mobile-clear-btn" type="button" title="Clear">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <button class="voice-search-btn mobile-voice-btn" type="button" title="Voice Search">
+                    <i class="fa-solid fa-microphone"></i>
+                </button>
+            </div>
+        </div>
+
         <div class="hero-bg-elements">
             <div class="hero-glow"></div>
             <div class="floating-glasses">
@@ -817,6 +843,7 @@
         <script defer src="js/modules/cart.js?v=51"></script>
         <script defer src="js/modules/products.js?v=51"></script>
         <script defer src="js/modules/navigation.js?v=51"></script>
+        <script defer src="js/modules/search.js?v=51"></script>
         <script defer src="js/modules/auth.js?v=51"></script>
         <script defer src="js/modules/ui.js?v=51"></script>
 

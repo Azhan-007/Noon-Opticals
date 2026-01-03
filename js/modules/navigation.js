@@ -79,6 +79,11 @@ class NavigationManager {
                     }
                 });
 
+                // Map branches section to contact in navbar
+                if (current === 'branches') {
+                    current = 'contact';
+                }
+
                 this.navLinks.forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('href') === '#' + current) {
